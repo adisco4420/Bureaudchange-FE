@@ -1,3 +1,4 @@
+import { MainLayoutComponent } from './core/components/main-layout/main-layout.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,8 @@ import { MainFooterComponent } from './core/components/main-footer/main-footer.c
     AppComponent,
     HomeComponent,
     MainHeaderComponent,
-    MainFooterComponent
+    MainFooterComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -21,4 +23,4 @@ import { MainFooterComponent } from './core/components/main-footer/main-footer.c
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
