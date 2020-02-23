@@ -2,4 +2,8 @@
 @import "./assets/css/bootstrap.min.css";
 @import "./assets/css/themify-icons.css";
 @import "./assets/css/style.css";
-@import "./assets/css/auth.css"
+@import "./assets/css/auth.css";
+
+.form-control{
+    box-shadow: none !important;
+}
