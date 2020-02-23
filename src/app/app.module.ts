@@ -14,7 +14,7 @@ import { MainFooterComponent } from './core/components/main-footer/main-footer.c
     HomeComponent,
     MainHeaderComponent,
     MainFooterComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,
