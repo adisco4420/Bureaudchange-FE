@@ -1,5 +1,6 @@
+import { GeneralService } from './../../../shared/general.service';
 import { AuthService } from './../../auth.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subject, } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -9,12 +10,13 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit, AfterViewInit, OnDestroy {
   unscribe = new Subject();
   error;
   submitted = false;
   disBtn = false;
   passwordPattern = '[a-zA-Z ]*';
+  pwdType = 'password';
   form = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -23,21 +25,40 @@ export class RegisterComponent implements OnInit, OnDestroy {
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
   get controls() {return this.form.controls; }
-  constructor(private authSrv: AuthService) { }
+  constructor(
+    private authSrv: AuthService,
+    private gs: GeneralService) { }
 
   ngOnInit() {
+  }
+  ngAfterViewInit() {
+    this.pwdChange();
   }
 
   register() {
     if (this.form.valid) {
       this.disBtn = true;
-      this.authSrv.register(this.form.value).pipe(takeUntil(this.unscribe)).subscribe(res => {
-        
+      this.authSrv.register(this.form.value).pipe(takeUntil(this.unscribe)).subscribe((res: any) => {
+        this.disBtn = false;
+        this.gs.swtSuccess(res);
       }, err => {
-
+        console.log(err);
+        this.disBtn = false;
+        this.gs.swtError(err);
       });
     } else {
       this.submitted = true;
+    }
+  }
+  showPwd(state: boolean) {
+    this.pwdType = state ? 'text' : 'password';
+  }
+  pwdChange() {
+    const pwdField = document.getElementById('pwd-eye');
+    if (this.controls.password.value.length >= 8) {
+      pwdField.style.bottom = '30%';
+    } else {
+      pwdField.style.bottom = '50%';
     }
   }
 

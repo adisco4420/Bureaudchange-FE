@@ -8,7 +8,7 @@
         
               <div class="card-body">
                 <h5 class="card-title text-center">Register</h5>
-                <form class="form-signin" [formGroup]="form" (ngSubmit)="register()" >
+                <form class="form-signin"  [formGroup]="form" (ngSubmit)="register()" >
                   <div *ngIf='form.errors && controls.emaill.valid && controls.password.valid' class="text-danger">
                         {{error}}
                     </div> 
@@ -49,8 +49,11 @@
                   </div>
 
                   <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" 
+                    <input [type]="pwdType" id="inputPassword" class="form-control" (input)="pwdChange()"
                     placeholder="Password" formControlName="password">
+                    <i *ngIf="pwdType === 'password'" (click)="showPwd(true)" id="pwd-eye" class="ti-eye pwd-eye text-secondary"></i>
+                    <i *ngIf="pwdType === 'text'" (click)="showPwd(false)" id="pwd-eye" class="ti-eye pwd-eye text-dark"></i>
+
                     <label for="inputPassword">Password</label>
                     <span class="text-danger"  *ngIf="(controls.password.invalid)&&(controls.password.touched||submitted)">
                       <span *ngIf="controls.password.errors.required">Password is required</span>
