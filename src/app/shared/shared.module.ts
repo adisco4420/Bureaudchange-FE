@@ -1,9 +1,9 @@
-import { Loaders } from './components/loader/loader.component';
+import { LoaderComponent } from './components/loader/loader.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 const sharedComponent = [
-  ...Loaders,
+  LoaderComponent,
 ];
 
 @NgModule({

@@ -1,26 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-btn-loader',
-  template: ` <div class="la-line-spin-clockwise-fade">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>`,
-  styleUrls: ['./btn-loader.css']
+  selector: 'app-loader',
+  templateUrl: './loader.component.html',
+  styleUrls: ['./loader.component.css']
 })
-export class BtnLoaderComponent implements OnInit {
-
+export class LoaderComponent implements OnInit {
+  @Input() type = 'clockwise-fade';
   constructor() { }
 
   ngOnInit() {
   }
 
 }
-export const Loaders = [ BtnLoaderComponent ];
 
