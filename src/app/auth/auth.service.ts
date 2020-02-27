@@ -6,10 +6,17 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = environment.baseUrl;
+  userApi = `${environment.baseUrl}/user`;
   constructor(private http: HttpClient) { }
 
   register(payload) {
-    return this.http.post(`${this.baseUrl}/user/register`, payload);
+    return this.http.post(`${this.userApi}/register`, payload);
+  }
+  confirmEmail(token) {
+    return this.http.get(`${this.userApi}/comfirm-email`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
   }
 }

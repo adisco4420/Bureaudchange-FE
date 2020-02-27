@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LoaderComponent implements OnInit {
   @Input() type = 'clockwise-fade';
+  @Input() classes: string;
   constructor() { }
 
   ngOnInit() {

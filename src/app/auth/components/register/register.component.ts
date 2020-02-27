@@ -40,9 +40,9 @@ export class RegisterComponent implements OnInit, AfterViewInit, OnDestroy {
       this.disBtn = true;
       this.authSrv.register(this.form.value).pipe(takeUntil(this.unscribe)).subscribe((res: any) => {
         this.disBtn = false;
+        this.form.reset();
         this.gs.swtSuccess(res);
       }, err => {
-        console.log(err);
         this.disBtn = false;
         this.gs.swtError(err);
       });

@@ -5,25 +5,28 @@
     
           <div class="card-body">
             <h5 class="card-title text-center">Confirm Email Address</h5>
-            <form class="form-signin" >
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" 
-                placeholder="Email address" required>
-                <label for="inputEmail">Email address</label>
-                <!-- <span class="text-danger"  *ngIf="email.invalid && email.touched">
-                Email is required
-                </span> -->
+            <div *ngIf="showLoader">
+              <div class="d-flex justify-content-center">
+                <app-loader [type]="'clip-rotate'" [classes]="'text-purple'" ></app-loader>
               </div>
-  
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" 
-                placeholder="Password" required>
-                <label for="inputPassword">Password</label>
-
+              <h6 class="text-center my-4">Please wait while we confirm your email.</h6>
+            </div>
+            <div *ngIf="!showLoader">
+              <div class="text-center" *ngIf="status.type==='success'">
+                <div>
+                  <i class=" ti-email text-success ft-medium"></i>
+                </div>
+                <h6 class="my-3 text-capitalize">{{status.msg}}</h6>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" >Setup Wallet</button>
               </div>
-  
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
-            </form>
+              <div class="text-center" *ngIf="status.type==='error'">
+                <div>
+                  <i class=" ti-face-sad text-danger ft-medium"></i>
+                </div>
+                <h6 class="my-3">{{status.msg}}</h6>
+              </div>
+          
+            </div>
           </div>
         </div>
       </div>
