@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-prod": "ng build --aot --output-hashing=all"
+    "build-prod": "ng build --aot --output-hashing=all --build-optimizer"
   },
   "private": true,
   "dependencies": {
