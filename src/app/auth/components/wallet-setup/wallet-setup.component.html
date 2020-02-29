@@ -9,16 +9,16 @@
             <div class=" text-center mb-4">
                 <img class="img-fluid" style="width:120px" src="/assets/images/cash.png" alt="wallet">
             </div>
-            <div *ngIf="!allCurrency" class=" text-center mb-4">
+            <div *ngIf="!userWallets" class=" text-center mb-4">
                 <app-loader [type]="'clip-rotate'" [classes]="'text-purple'" ></app-loader>
             </div>
              <!-- Basic List Group start -->               
-            <ng-container *ngIf="allCurrency">
+            <ng-container *ngIf="userWallets">
                 <div class="card" >
                     <div class="card-body">
                         <h4 class="header-title text-center">Choose Preferred Currency</h4>
                         <ul class="list-group currencyList" >
-                            <li class="list-group-item" *ngFor="let currency of allCurrency">
+                            <li class="list-group-item" *ngFor="let currency of filteredCurreny">
                               <div class="row">
                                 <div class="col-3 float-left">
 
@@ -36,16 +36,23 @@
                               </div>
                        
                             </li>
-
-                            <!-- <li class="list-group-item" *ngFor="let currency of allCurrency">
-                                <img [src]="currency.flagImgUrl" alt="img" style="width:30px">
-                                <span>{{currency.currency}} </span>
-             
-                                <button  class="btn btn-success btn-sm float-right" 
-                                (click)="addCurrencyNew(currency.symbol)">
-                               <span class="fa fa-plus"></span>
-                                </button> 
-                            </li> -->
+                            <li class="list-group-item" *ngFor="let currency of userWallets">
+                              <div class="row">
+                                <div class="col-3 float-left">
+                                    <img *ngIf="currency.name" [src]="flag.url+gs.getContryFlagName(currency.symbol)+flag.size" alt="img" style="width:30px">
+                                </div>
+                                <div class="col text-center">
+                                    <h6 >{{currency.name}}</h6>
+                                    <p>{{currency.symbol}}</p>
+                                  </div>
+                                <div class="col-3 float-right">
+                                    <button (click)="addCurrency(currency)" class="btn btn-danger btn-sm float-right">
+                                        <span class=" ti-close text-bold"></span>
+                                      </button>
+                                </div>
+                              </div>
+                       
+                            </li>
                         </ul>
                     </div>
                     <!-- <span *ngIf="minimumCurrencyError" class="text-danger text-center mb-2">

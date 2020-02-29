@@ -34,4 +34,5 @@ export class WalletService {
       { name: 'Ghanian Cedi', symbol: 'GHS', sign: '₵', flagName: 'ghana'},
     ];
   }
+
 }
