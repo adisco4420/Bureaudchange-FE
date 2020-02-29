@@ -1,1 +1,167 @@
-<p>dash-layout works!</p>
+<div class="page-container">
+      <app-dash-sidebar></app-dash-sidebar>
+    <div class="main-content"> 
+      <app-dash-header></app-dash-header>
+        <div class="main-content-inner">
+            <div class="sales-report-area mt-5 mb-5">
+                <div class="row">
+                    <!-- <div class="col-md-4 currency" *ngFor="let cun of fetchWallet"> 
+                        <div class="single-report mb-xs-30" [style.background-color]="cun.bgColor || 'black'">
+                            <div class="s-report-inner pr--20 pt--30 mb-3">
+                                <div class="icon" [style.background-color]="cun.iconColor || 'grey'">{{cun.sign}}</div>
+                                <div class="s-report-title d-flex justify-content-between">
+                                    <h4 class="header-title mb-0 text-light">{{cun.currency}}</h4>
+                                 
+                                </div>
+                                <div class="d-flex justify-content-between pb-2">
+                                    <h2 class="text-light">{{cun.sign}} {{cun.balance | currency:" ":false }}</h2>
+  
+                                </div>
+                                <span style="font-size:3em;color:white" class="fa fa-plus-circle"></span>
+                            </div>
+                            <canvas id="coin_sales1" height="100"></canvas>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <button class="btn btn-info" data-toggle="modal" 
+            data-target="#exampleModal"><span class="fa fa-plus"></span> Add New Currency</button>
+            <!--  Money-->
+            <!-- row area start-->
+            <div class="row mt-3">
+                <!--live currency-->
+              <div class="col-lg-5">
+                  <div class="card">
+                      <!-- <div class="card-body">
+                          <h4 class="header-title">Live Currency Exchange Price</h4>
+                          <hr>
+                          <div class="cripto-live mt-5">
+                                  <div *ngIf="!currencyRate">
+                                      <img src="/assets/images/Disk.gif" alt="spinner">
+                                  </div>
+                              <ul *ngIf="currencyRate">
+                                  <li *ngFor="let currency of newCurrencyArray">
+                                      <div class='{{currency.class}}'>{{currency.sign}}</div> {{currency.currency}} 
+                                      <span>{{currency.rate | currency:currency.symbol }}</span></li>
+                         
+                              </ul>
+                          </div>
+                      </div> -->
+                  </div> 
+              </div>
+                <!--live currency-->
+                       <!-- trading history area start -->
+                       <!-- <div class="col-lg-7 mt-sm-30 mt-xs-30">
+                              <div class="card" *ngIf="!transHtry && transHtry.length > 1">
+                                  <img src="/assets/spinner/block.gif" 
+                                        alt="loading">
+                              </div>
+                              <div class="card" *ngIf="transHtry.length > 1 && transHtry">
+                                      <div class="card-body">
+                                          <h4 class="header-title">Transcation History</h4>
+                                          <div class="single-table">
+                                              <div class="table-responsive">
+                                                  <table class="table text-center"  *ngFor="let tran of transHtry">
+                                                      <thead class="text-uppercase">
+                                                          <tr><b>{{tran.date}}</b></tr>
+                                                         
+                                                      </thead>
+                                                      <tbody *ngFor="let detail of tran.trans">
+                                                          <tr>
+                                                              <td><span class="fa fa-{{detail.icon}} fa-2x"></span></td>
+                                                              <td>{{detail.title}}
+                                                                      <p [innerHTML]='detail.detail'></p>
+                                                                  </td>
+                                                                  <td>{{detail.price}}</td>
+                                                          </tr>
+                                    
+                                                      </tbody>
+     
+                                                   
+                                                  </table>
+                                                  <h6><a routerLink="/transaction-history" class="text-info">Load More</a></h6>
+                                              </div>
+                                          </div>
+                                      </div>
+                              </div>
+                              <div class="card" *ngIf="transHtry.length < 1">
+                                  <img src="https://cdn.dribbble.com/users/1038710/screenshots/2813751/19.jpg" 
+                                       alt="no transaction">
+                              </div>
+                          </div> -->
+                          <!-- trading history area end -->
+            </div>
+  
+            <!--blog and exchange-->
+              <div class="row mt-5">
+                                  <!-- exchange area start -->
+                                  <div class="col-xl-6 mt-md-30 mt-xs-30 mt-sm-30">
+                                          <div class="card">
+                                              <div class="card-body">
+                                                  <h4 class="header-title">Exchange</h4>
+                                                  <div class="exhcange-rate mt-5">
+                                                      <form action="#">
+                                                          <div class="input-form">
+                                                              <input type="text" value="0.76834">
+                                                              <span>BTC</span>
+                                                          </div>
+                                                          <div class="exchange-devider">To</div>
+                                                          <div class="input-form">
+                                                              <input type="text" value="5689.846">
+                                                              <span>USD</span>
+                                                          </div>
+                                                          <div class="exchange-btn">
+                                                              <button type="submit">Exchange Now</button>
+                                                          </div>
+                                                      </form>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <!-- exchange area end -->
+              </div>
+  
+            <!--blog and exchange-->
+        </div>
+    </div>
+    <!-- main content area end -->
+    <!-- footer area start-->
+  
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+              aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Currency</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"> 
+     
+          <form [formGroup]="form" >
+            <div class="form-group">
+          
+              <label for="recipient-name" class="col-form-label">Currency:</label>
+              <select class="form-control" formControlName="currency">
+                  <option *ngFor="let cun of allCurrency" value="{{cun.symbol}}"  >
+                      {{cun.sign}} - {{cun.currency}}
+                  </option>
+                </select>
+                <div class="text-danger "  
+                *ngIf="currencys.invalid  && formError"> 
+                 <b>*required</b>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button"   (click)="addNewCurrency(form)" class="btn btn-primary custom-close">Add Currency</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+    <app-dash-footer></app-dash-footer>
+    <!-- footer area end-->
+  </div>
