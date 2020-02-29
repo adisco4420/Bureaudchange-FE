@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-xl-5 mx-auto">
+      <div class="card card-signin flex-row my-5">
+  
+        <div class="card-body">
+          <h5 class="card-title text-center">Register</h5>
+          <form class="form-signin"  [formGroup]="form" (ngSubmit)="register()" >
+            <div *ngIf='form.errors && controls.emaill.valid && controls.password.valid' class="text-danger">
+                  {{error}}
+              </div> 
+              <div class="form-label-group">
+                  <input type="text" id="firstName" class="form-control" formControlName="firstName"
+                  placeholder="Email address" autofocus>
+                  <label for="firstName">First Name</label>
+                  <span class="text-danger"  *ngIf="(controls.firstName.invalid)&&(controls.firstName.touched||submitted)">
+                  First Name is required
+                  </span>
+                </div>
+                <div class="form-label-group">
+                  <input type="text" id="lastName" class="form-control" formControlName="lastName"
+                  placeholder="Email address">
+                  <label for="lastName">Last Name</label>
+                  <span class="text-danger"  *ngIf="(controls.lastName.invalid)&&(controls.lastName.touched||submitted)">
+                    Last Name is required
+                    </span>
+                </div>
+            
+              <div class="form-label-group">
+              <input type="email" id="inputEmail" class="form-control" formControlName="email"
+              placeholder="Email address" required>
+              <label for="inputEmail">Email address</label>
+              <span class="text-danger"  *ngIf="(controls.email.invalid)&&(controls.email.touched||submitted)">
+                  <span *ngIf="controls.email.errors.required">Email is required</span>
+                  <span *ngIf="controls.email.errors.email">Email is invalid</span>
+              </span>
+            </div>
+            <div class="form-label-group">
+              <input type="number" id="phoneNumber" class="form-control" formControlName="phoneNumber"
+              placeholder="Email address">
+              <label for="phoneNumber">Phone Number</label>
+              <span class="text-danger"  *ngIf="(controls.phoneNumber.invalid)&&(controls.phoneNumber.touched||submitted)">
+                <span *ngIf="controls.phoneNumber.errors.required">Phone Number is required</span>
+                <span *ngIf="controls.phoneNumber.invalid&&!controls.phoneNumber.errors.required">Phone Number is invalid</span>
+            </span>
+            </div>
+
+            <div class="form-label-group">
+              <input [type]="pwdType" id="inputPassword" class="form-control" (input)="pwdChange()"
+              placeholder="Password" formControlName="password">
+              <i *ngIf="pwdType === 'password'" (click)="showPwd(true)" id="pwd-eye" class="ti-eye pwd-eye text-secondary"></i>
+              <i *ngIf="pwdType === 'text'" (click)="showPwd(false)" id="pwd-eye" class="ti-eye pwd-eye text-dark"></i>
+
+              <label for="inputPassword">Password</label>
+              <span class="text-danger"  *ngIf="(controls.password.invalid)&&(controls.password.touched||submitted)">
+                <span *ngIf="controls.password.errors.required">Password is required</span>
+                <span *ngIf="controls.password.invalid&&!controls.password.errors.required">Password must be up to 8 character</span>
+          
+                </span>
+            </div>
+
+            <button [disabled]="disBtn" class="btn btn-lg btn-primary btn-block text-uppercase text-center" type="submit">
+              <span *ngIf="!disBtn">Register</span>
+             <app-loader *ngIf="disBtn"></app-loader>  
+            </button>
+            <div class="mt-3 text-center">
+              <p>By creating an account , you agree to our <b>Terms</b> </p>
+              <p>Already have an account? <a class=" text-info " routerLink="/auth/login"><b>Login</b></a></p>
+       
+            </div>
+            <!-- <hr class="my-4">
+            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fa fa-google mr-2"></i> Login with Google</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fa fa-facebook-f mr-2"></i> Login with Facebook</button> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

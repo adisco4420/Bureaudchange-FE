@@ -3,17 +3,17 @@
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-dark navbar-expand-lg">
-                    <a class="navbar-brand" href="index.html"><h4> <span class="ti-dropbox mr-1"></span><b>Bureaudchange</b></h4> </a> 
+                    <a class="navbar-brand" routerLink="/"><h4 class="text-light"> <span class="ti-dropbox mr-1"></span><b>Bureaudchange</b></h4> </a> 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                          <span class="navbar-toggler-icon"></span> 
                     </button>
                     <div class="collapse navbar-collapse" id="navbar">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item"> <a class="nav-link" routerLinkActive="active" routerLink="/">HOME <span class="sr-only">(current)</span></a> </li>
-                            <li class="nav-item"> <a class="nav-link" routerLink="#">ABOUT US</a> </li>
+                            <li class="nav-item"> <a class="nav-link"   routerLink="/" routerLinkActive="active">HOME <span class="sr-only">(current)</span></a> </li>
+                            <li class="nav-item"> <a class="nav-link"  routerLink="#">ABOUT US</a> </li>
                             <li class="nav-item"> <a class="nav-link" routerLink="#">FAQs</a> </li>
-                            <li class="nav-item"> <a class="nav-link" routerLink="#">LOG IN</a> </li>
-                            <li class="nav-item"><a routerLink="#" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">SIGN UP</a></li>
+                            <li class="nav-item"> <a class="nav-link" routerLink="/auth/login" routerLinkActive="active" >LOG IN</a> </li>
+                            <li class="nav-item"><a  routerLink="/auth/register" routerLinkActive="active" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">SIGN UP</a></li>
                         </ul>
                     </div>
                 </nav>

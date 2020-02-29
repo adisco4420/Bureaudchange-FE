@@ -1,0 +1,16 @@
+.form-label-group span.text-danger{
+    margin-left: 18px;
+    font-size: small;
+}
+.pwd-eye{
+    position: absolute;
+    left: 89%;
+    cursor: pointer;
+    bottom: 30%;
+}
+.btm-45{
+    bottom: 45%;
+}
+.btm-30{
+    bottom: 30%;
+}

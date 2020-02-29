@@ -1,3 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/css/bootstrap.min.css";
 @import "./assets/css/themify-icons.css";
+@import "./assets/css/style.css";
+@import "./assets/css/auth.css";
+@import '~ngx-toastr/toastr';
+
+.form-control{
+    box-shadow: none !important;
+}
+.p-75x {
+    padding: 75px 0 0;
+}
+.text-purple{
+    color: #995690 !important;
+} 
+.ft-medium{
+    font-size: 5rem !important;
+}
+.text-bold{
+    font-weight: bold;
+}
