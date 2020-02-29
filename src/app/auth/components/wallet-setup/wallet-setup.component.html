@@ -25,12 +25,12 @@
                                     <img *ngIf="currency.name" [src]="flag.url+currency.flagName+flag.size" alt="img" style="width:30px">
                                 </div>
                                 <div class="col text-center">
-                                    <h6 >{{currency.currency}}</h6>
+                                    <h6 >{{currency.name}}</h6>
                                     <p>{{currency.symbol}}</p>
                                   </div>
                                 <div class="col-3 float-right">
-                                    <button (click)="removeCurrency(currency)" class="btn btn-danger btn-sm float-right">
-                                        <span class="fa fa-close"></span>
+                                    <button (click)="addCurrency(currency)" class="btn btn-success btn-sm float-right">
+                                        <span class=" ti-plus text-bold"></span>
                                       </button>
                                 </div>
                               </div>

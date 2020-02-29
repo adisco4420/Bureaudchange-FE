@@ -33,12 +33,12 @@ export class AuthService {
   }
   getAllCurrency(): CurrencyI[] {
     return [
-      { name: 'british pound', symbol: 'GBP', sign: '£', flagName: 'united-kingdom'},
-      { name: 'US dollar', symbol: 'USD', sign: '$', flagName: 'united-states-of-america'},
-      { name: 'European euro', symbol: 'EUR', sign: '€', flagName: 'canada'},
-      { name: 'Nigerian naira', symbol: 'NGN', sign: '₦', flagName: 'nigeria'},
-      { name: 'UAE dirham', symbol: 'AED', sign: '	د.إ', flagName: 'united-arab-emirates'},
-      { name: 'chinese yuan', symbol: 'CNY', sign: '¥', flagName: 'china'},
+      { name: 'British Pound', symbol: 'GBP', sign: '£', flagName: 'united-kingdom'},
+      { name: 'US Dollar', symbol: 'USD', sign: '$', flagName: 'united-states-of-america'},
+      { name: 'European Euro', symbol: 'EUR', sign: '€', flagName: 'canada'},
+      { name: 'Nigerian Naira', symbol: 'NGN', sign: '₦', flagName: 'nigeria'},
+      { name: 'UAE Dirham', symbol: 'AED', sign: '	د.إ', flagName: 'united-arab-emirates'},
+      { name: 'Chinese Yuan', symbol: 'CNY', sign: '¥', flagName: 'china'},
       { name: 'Ghanian Cedi', symbol: 'GHS', sign: '₵', flagName: 'ghana'},
     ];
   }

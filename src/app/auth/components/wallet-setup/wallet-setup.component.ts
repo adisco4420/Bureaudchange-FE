@@ -29,5 +29,9 @@ export class WalletSetupComponent implements OnInit {
       this.allCurrency = this.authSrv.getAllCurrency();
     }, 3000);
   }
+  addCurrency(currency) {
+    console.log(currency);
+    
+  }
 
 }
