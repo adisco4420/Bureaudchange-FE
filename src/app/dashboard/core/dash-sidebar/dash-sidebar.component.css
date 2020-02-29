@@ -1,0 +1,10 @@
+
+.sidebar-header .logo a h3{
+    color: white;
+}
+.menu-inner .metismenu li a i{
+    color: #8d97ad;
+}
+.metismenu li:hover>a i, .metismenu li.active>a i{
+    color: white !important;
+}
