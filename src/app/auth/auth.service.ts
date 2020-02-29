@@ -15,6 +15,9 @@ export class AuthService {
   register(payload) {
     return this.http.post(`${this.userApi}/register`, payload);
   }
+  login(payload) {
+    return this.http.post(`${this.userApi}/login`, payload);
+  }
   confirmEmail(token) {
     return this.http.get(`${this.userApi}/comfirm-email`, this.gs.getAuthHeader(token));
   }

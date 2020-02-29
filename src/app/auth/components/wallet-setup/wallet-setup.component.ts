@@ -92,7 +92,6 @@ export class WalletSetupComponent implements OnInit, OnDestroy {
     } else {
       this.pinError = true;
     }
-    console.log(pin.value, this.pinError);
   }
 
   ngOnDestroy() {
