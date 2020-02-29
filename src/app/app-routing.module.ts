@@ -8,6 +8,7 @@ const routes: Routes = [
     { path: '', component: HomeComponent},
     {path: 'auth', loadChildren: './auth/auth.module#AuthModule'}
   ]},
+  { path: '', loadChildren: './dashboard/dashboard.module#DashboardModule'},
   { path: '**', redirectTo: '/' , pathMatch: 'full'},
 ];
 
