@@ -8,7 +8,7 @@ import { AuthLayoutComponent } from './components/auth-layout.component';
 
 
 const routes: Routes = [
-  {path: '', component: AuthLayoutComponent, 
+  {path: '', component: AuthLayoutComponent,
     children: [
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
