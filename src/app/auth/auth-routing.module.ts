@@ -1,3 +1,4 @@
+import { WalletSetupComponent } from './components/wallet-setup/wallet-setup.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
     children: [
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
-      {path: 'comfirm-email/:token', component: ConfirmEmailComponent}
+      {path: 'comfirm-email/:token', component: ConfirmEmailComponent},
+      {path: 'wallet-setup', component: WalletSetupComponent}
     ]}
 ];
 

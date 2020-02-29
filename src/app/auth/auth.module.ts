@@ -8,9 +8,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 import { AuthLayoutComponent } from './components/auth-layout.component';
+import { WalletSetupComponent } from './components/wallet-setup/wallet-setup.component';
 
 @NgModule({
-  declarations: [ AuthLayoutComponent, LoginComponent, RegisterComponent, ConfirmEmailComponent],
+  declarations: [ AuthLayoutComponent, LoginComponent, RegisterComponent, ConfirmEmailComponent, WalletSetupComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

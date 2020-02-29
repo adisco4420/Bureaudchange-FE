@@ -1,12 +1,18 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+export interface CurrencyI {
+  name: string;
+  symbol: string;
+  sign: string;
+  flagName: string;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   userApi = `${environment.baseUrl}/user`;
+  currentUser = 'currentUser';
   constructor(private http: HttpClient) { }
 
   register(payload) {
@@ -18,5 +24,22 @@ export class AuthService {
         Authorization: `Bearer ${token}`
       }
     });
+  }
+  storeToken(token: string) {
+    localStorage.setItem(this.currentUser, token);
+  }
+  getToken() {
+    return localStorage.getItem(this.currentUser);
+  }
+  getAllCurrency(): CurrencyI[] {
+    return [
+      { name: 'british pound', symbol: 'GBP', sign: '£', flagName: 'united-kingdom'},
+      { name: 'US dollar', symbol: 'USD', sign: '$', flagName: 'united-states-of-america'},
+      { name: 'European euro', symbol: 'EUR', sign: '€', flagName: 'canada'},
+      { name: 'Nigerian naira', symbol: 'NGN', sign: '₦', flagName: 'nigeria'},
+      { name: 'UAE dirham', symbol: 'AED', sign: '	د.إ', flagName: 'united-arab-emirates'},
+      { name: 'chinese yuan', symbol: 'CNY', sign: '¥', flagName: 'china'},
+      { name: 'Ghanian Cedi', symbol: 'GHS', sign: '₵', flagName: 'ghana'},
+    ];
   }
 }

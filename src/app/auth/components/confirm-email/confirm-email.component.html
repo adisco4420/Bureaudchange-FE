@@ -17,7 +17,7 @@
                   <i class=" ti-email text-success ft-medium"></i>
                 </div>
                 <h6 class="my-3 text-capitalize">{{status.msg}}</h6>
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" >Setup Wallet</button>
+                <button routerLink="/auth/wallet-setup" class="btn btn-lg btn-primary btn-block text-uppercase" >Setup Wallet</button>
               </div>
               <div class="text-center" *ngIf="status.type==='error'">
                 <div>

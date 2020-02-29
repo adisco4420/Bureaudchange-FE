@@ -22,7 +22,8 @@ export class ConfirmEmailComponent {
      }
 
   verifyEmail(token) {
-    this.authSrv.confirmEmail(token).subscribe(() => {
+    this.authSrv.confirmEmail(token).subscribe((res: any) => {
+      this.authSrv.storeToken(res.data.data);
       this.status = {type: 'success', msg: 'Your account is verified'};
     }, () => {
       this.status = {type: 'error', msg: 'Confirmation failed an error occured'};
