@@ -3,7 +3,6 @@
 @import "./assets/css/themify-icons.css";
 @import "./assets/css/style.css";
 @import '~ngx-toastr/toastr';
-
 .form-control{
     box-shadow: none !important;
 }
