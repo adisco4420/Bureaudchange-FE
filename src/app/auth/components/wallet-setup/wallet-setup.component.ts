@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GeneralService } from 'src/app/shared/general.service';
 import { WalletService, CurrencyI } from 'src/app/shared/wallet.service';
+import { ToastrService } from 'ngx-toastr';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-wallet-setup',
@@ -14,15 +16,20 @@ import { WalletService, CurrencyI } from 'src/app/shared/wallet.service';
 export class WalletSetupComponent implements OnInit, OnDestroy {
   unscribe = new Subject();
   token;
+  loading = '';
+  loadingPin = false;
   showType: 'wallet'|'pin' =  'wallet';
   flag = {url: 'https://cdn.countryflags.com/thumbs/', size: '/flag-round-250.png'};
   allCurrency: CurrencyI[] = [];
   filteredCurreny = [];
   userWallets: CurrencyI[];
+  minimumCurrencyError = false;
+  pinError = false;
   constructor(
     private walletSrv: WalletService,
     private router: Router,
     private authSrv: AuthService,
+    private toastr: ToastrService,
     public gs: GeneralService) {
     this.token = this.gs.getToken;
     if (!this.token) {
@@ -55,12 +62,37 @@ export class WalletSetupComponent implements OnInit, OnDestroy {
     this.filteredCurreny = diff;
   }
   addCurrency(currency) {
+    this.loading = currency.symbol;
     this.walletSrv.walletSetup(currency).pipe(takeUntil(this.unscribe)).subscribe(res => {
       this.getUserProfile();
-      this.gs.swtSuccess(res);
+      this.toastr.success(`${currency.name} Added To Wallet`);
     }, err => {
       this.gs.swtError(err);
     });
+  }
+  showPinSetup() {
+    if (this.userWallets.length >= 2) {
+      this.showType = 'pin';
+      this.minimumCurrencyError = false;
+    } else {
+      this.minimumCurrencyError = true;
+    }
+  }
+  pinSetup(pin: NgModel) {
+    if (pin.valid && `${pin.value}`.length === 5) {
+      this.pinError = false;
+      this.loadingPin = true;
+      this.authSrv.userPinSetup(`${pin.value}`).pipe(takeUntil(this.unscribe)).subscribe(res => {
+        this.toastr.success('Pin Setup Successful');
+      }, err => {
+        this.gs.swtError(err);
+      }).add(() => {
+        this.loadingPin = false;
+      });
+    } else {
+      this.pinError = true;
+    }
+    console.log(pin.value, this.pinError);
   }
 
   ngOnDestroy() {

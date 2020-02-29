@@ -21,7 +21,9 @@ export class AuthService {
   userProfile() {
     return this.http.get(`${this.userApi}/profile`, this.gs.getAuthHeader());
   }
-
+  userPinSetup(pin) {
+    return this.http.patch(`${this.userApi}/pin-setup`, {pin}, this.gs.getAuthHeader());
+  }
 
 
 }

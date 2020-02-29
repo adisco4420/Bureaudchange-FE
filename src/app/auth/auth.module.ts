@@ -13,11 +13,9 @@ import { WalletSetupComponent } from './components/wallet-setup/wallet-setup.com
 @NgModule({
   declarations: [ AuthLayoutComponent, LoginComponent, RegisterComponent, ConfirmEmailComponent, WalletSetupComponent],
   imports: [
-    CommonModule,
     AuthRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
 })
 export class AuthModule { }
+ 
