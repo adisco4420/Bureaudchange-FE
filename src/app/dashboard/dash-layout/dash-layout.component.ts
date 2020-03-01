@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
       @import "/assets/dashboard/css/slicknav.min.css";
       @Import "/assets/dashboard/css/typography.css";
       @import "/assets/dashboard/css/default-css.css";
-      /* @import "/assets/dashboard/css/styles.css"; */
       @import "/assets/dashboard/css/responsive.css";
     `]
 })
@@ -18,7 +17,6 @@ export class DashLayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('dahboard');
   }
 
 }

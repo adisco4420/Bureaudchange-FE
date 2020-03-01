@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralService } from 'src/app/shared/general.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 declare const $: any;
 @Component({
   selector: 'app-main-header',
@@ -7,7 +10,10 @@ declare const $: any;
 })
 export class MainHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public gs: GeneralService,
+    private authSrv: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getNavLogic();
@@ -20,6 +26,10 @@ export class MainHeaderComponent implements OnInit {
     siteNav.on('hide.bs.collapse', function(e) {
         $(this).parents('.nav-menu').removeClass('menu-is-open');
     });
+  }
+  logout() {
+    this.authSrv.logout();
+    this.router.navigate(['/auth/login']);
   }
 
 }

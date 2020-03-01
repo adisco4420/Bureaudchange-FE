@@ -1,6 +1,6 @@
 import { AuthService } from './../../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GeneralService } from 'src/app/shared/general.service';
@@ -25,9 +25,11 @@ export class WalletSetupComponent implements OnInit, OnDestroy {
   userWallets: CurrencyI[];
   minimumCurrencyError = false;
   pinError = false;
+  isAddCurrncy = false;
   constructor(
     private walletSrv: WalletService,
     private router: Router,
+    private route: ActivatedRoute,
     private authSrv: AuthService,
     private toastr: ToastrService,
     public gs: GeneralService) {
@@ -35,6 +37,9 @@ export class WalletSetupComponent implements OnInit, OnDestroy {
     if (!this.token) {
       this.router.navigate(['/auth/login']);
     }
+    this.route.queryParams.subscribe(res => {
+      this.isAddCurrncy =  res && res.addCurrency ? true : false;
+    });
   }
 
   ngOnInit() {
@@ -93,6 +98,9 @@ export class WalletSetupComponent implements OnInit, OnDestroy {
     } else {
       this.pinError = true;
     }
+  }
+  gotoDashboard() {
+    this.router.navigate(['/dashboard']);
   }
 
   ngOnDestroy() {

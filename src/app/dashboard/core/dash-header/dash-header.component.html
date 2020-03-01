@@ -21,10 +21,10 @@
              
                     <li class="dropdown">
                         <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
-                            <span>3</span>
+                            <span>2</span>
                         </i>
                         <div class="dropdown-menu bell-notify-box notify-box">
-                            <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                            <span class="notify-title">You have 2 new notifications <a href="#">view all</a></span>
                             <div class="nofity-list">
                                 <a href="#" class="notify-item">
                                     <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
@@ -40,18 +40,11 @@
                                         <span>30 Seconds ago</span>
                                     </div>
                                 </a>
-                                <a href="#" class="notify-item">
-                                    <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
-                                    <div class="notify-text">
-                                        <p>New Commetns On Post</p>
-                                        <span>30 Seconds ago</span>
-                                    </div>
-                                </a>
-
+                   
                             </div>
                         </div>
                     </li>
-                    <li class="dropdown"> 
+                    <!-- <li class="dropdown"> 
                         <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>2</span></i>
                         <div class="dropdown-menu notify-box nt-enveloper-box">
                             <span class="notify-title">You have 2 new notifications <a href="#">view all</a></span>
@@ -79,10 +72,10 @@
 
                             </div>
                         </div>
-                    </li>
-                    <li class="settings-btn">
+                    </li> -->
+                    <!-- <li class="settings-btn">
                         <i class="ti-settings"></i>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -93,24 +86,25 @@
         <div class="row align-items-center">
             <div class="col-sm-6">
                 <div class="breadcrumbs-area clearfix">
-                    <h4 class="page-title pull-left">Dashboard</h4>
-                    <ul class="breadcrumbs pull-left">
+                    <h5 class="page-title pull-left">Dashboard</h5>
+                    <!-- <ul class="breadcrumbs pull-left">
                         <li><a routerLink="/wallet">Home</a></li>
-                        <!-- <li><span>{{rot}}</span></li>  -->
-                    </ul> 
+                        <li><span>{{rot}}</span></li> 
+                    </ul>  -->
                 </div>
             </div> 
             <div class="col-sm-6 clearfix">
                 <div class="user-profile pull-right">
                     <img class="avatar user-thumb" src="/assets/dashboard/images/author/avatar.png" alt="avatar">
-                    <!-- <p class="user-name dropdown-toggle" data-toggle="dropdown">{{greeting}} 
-                        <span *ngIf="!username"><img src="/assets/images/ring.gif" alt="username"></span>
-                        <span *ngIf="username">{{username}}</span>
-                        <i class="fa fa-angle-down"></i></p> -->
+                    <p class="user-name dropdown-toggle" data-toggle="dropdown">{{'Hello'}} 
+                        <span *ngIf="!user"><img src="/assets/images/ring.gif" alt="username"></span>
+                        <span *ngIf="user">{{user.firstName}}</span>
+                        <i class="fa fa-angle-down"></i>
+                    </p>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Message</a>
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <!-- <a class="dropdown-item" (click)='logout()' >Log Out</a> -->
+                        <!-- <a class="dropdown-item" href="#">Message</a>
+                        <a class="dropdown-item" href="#">Settings</a> -->
+                        <a class="dropdown-item" (click)='logout()' >Log Out</a>
                     </div>
                 </div>
             </div>

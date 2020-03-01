@@ -3,7 +3,9 @@
       <div class="col-lg-6 col-xl-5 mx-auto"> 
         <div class="card card-signin flex-row my-5">
           <div class="card-body">
-            <h5 class="card-title text-center text-capitalize">{{showType}} Setup</h5>
+            <h5 *ngIf="!isAddCurrncy" class="card-title text-center text-capitalize">{{showType}} Setup</h5>
+            <h5 class="card-title text-center text-capitalize">Add Currency</h5>
+
              <!-- list of Currency -->
              <ng-container *ngIf="showType==='wallet'">
             <div class=" text-center mb-4">
@@ -61,9 +63,12 @@
                     </span>
                    
                     <div class="text-center mb-3">
-                       <button (click)="showPinSetup()" class="btn btn-md btn-primary  text-uppercase" type="submit">
+                       <button *ngIf="!isAddCurrncy" (click)="showPinSetup()" class="btn btn-md btn-primary  text-uppercase" type="submit">
                          Next <span class=" ti-arrow-right"></span>
                        </button>
+                       <button *ngIf="isAddCurrncy" (click)="gotoDashboard()" class="btn btn-md btn-primary  text-uppercase" type="button">
+                        Save <span class=" ti-arrow-right"></span>
+                      </button>
                     </div>
                 </div>
             </ng-container>

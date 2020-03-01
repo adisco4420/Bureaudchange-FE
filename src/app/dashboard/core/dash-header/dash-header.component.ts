@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+import { UserI } from 'src/app/auth/components/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dash-header',
@@ -6,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dash-header.component.scss']
 })
 export class DashHeaderComponent implements OnInit {
-
-  constructor() { }
+  user: UserI;
+  constructor(
+    private authSrv: AuthService,
+    private router: Router) {
+    this.user = this.authSrv.currentUserValue;
+  }
 
   ngOnInit() {}
-
+  logout() {
+    this.authSrv.logout();
+    this.router.navigate(['/auth/login']);
+  }
 }
