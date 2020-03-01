@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [
               "./src/assets/js/jquery-3.2.1.min.js",
@@ -37,7 +37,6 @@
               "./src/assets/dashboard/js/plugins.js",
               "./src/assets/js/script.js",
               "./src/assets/dashboard/js/scripts.js"
-
             ]
           },
           "configurations": {
@@ -132,6 +131,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "bureaudchange"
+    }
+  },
+  "defaultProject": "bureaudchange",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

@@ -11,7 +11,7 @@ import { NgModel } from '@angular/forms';
 @Component({
   selector: 'app-wallet-setup',
   templateUrl: './wallet-setup.component.html',
-  styleUrls: ['./wallet-setup.component.css']
+  styleUrls: ['./wallet-setup.component.scss']
 })
 export class WalletSetupComponent implements OnInit, OnDestroy {
   unscribe = new Subject();
@@ -84,6 +84,7 @@ export class WalletSetupComponent implements OnInit, OnDestroy {
       this.loadingPin = true;
       this.authSrv.userPinSetup(`${pin.value}`).pipe(takeUntil(this.unscribe)).subscribe(res => {
         this.toastr.success('Pin Setup Successful');
+        this.router.navigate(['/dashboard']);
       }, err => {
         this.gs.swtError(err);
       }).add(() => {
