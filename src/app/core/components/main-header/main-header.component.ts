@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GeneralService } from 'src/app/shared/general.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 declare const $: any;
 @Component({
   selector: 'app-main-header',
@@ -9,7 +10,7 @@ declare const $: any;
   styleUrls: ['./main-header.component.scss']
 })
 export class MainHeaderComponent implements OnInit {
-
+  appName = environment.appName;
   constructor(
     public gs: GeneralService,
     private authSrv: AuthService,

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-dark navbar-expand-lg">
-                    <a class="navbar-brand" routerLink="/"><h4 class="text-light"> <span class="ti-dropbox mr-1"></span><b>Bureaudchange</b></h4> </a> 
+                    <a class="navbar-brand" routerLink="/"><h4 class="text-light"> <span class="ti-dropbox mr-1"></span><b>{{appName}}</b></h4> </a> 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                          <span class="navbar-toggler-icon"></span> 
                     </button>
@@ -18,7 +18,7 @@
                             </ng-container>
                             <ng-template #notlogin>
                                 <li class="nav-item"> <a class="nav-link" routerLink="/dashboard" routerLinkActive="active" >DASHBOARD</a> </li>
-                                <li class="nav-item"><a (click)="logout" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">LOG OUT</a></li>
+                                <li class="nav-item"><a (click)="logout()" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">LOG OUT</a></li>
                             </ng-template>
                         </ul>
                     </div>

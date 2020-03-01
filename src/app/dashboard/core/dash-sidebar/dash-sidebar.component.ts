@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 declare const $: any;
 @Component({
@@ -7,7 +8,7 @@ declare const $: any;
   styleUrls: ['./dash-sidebar.component.scss']
 })
 export class DashSidebarComponent implements OnInit {
-
+  appName = environment.appName;
   constructor() { }
 
   ngOnInit() {

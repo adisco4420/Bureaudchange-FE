@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://bureaudchange.herokuapp.com'
+  baseUrl: 'https://bureaudchange.herokuapp.com',
+  appName: 'KashXchange'
 };
