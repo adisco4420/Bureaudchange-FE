@@ -50,6 +50,7 @@ export class WalletSetupComponent implements OnInit, OnDestroy {
     this.authSrv.userProfile().pipe(takeUntil(this.unscribe)).subscribe((res: any) => {
       const token = this.gs.getSuccessData(res);
       const data = this.gs.decodeToken(token);
+      this.authSrv.updateUserData(token);
       this.userWallets = data && data.wallet ? data.wallet : [];
       this.currencyDiff([...this.userWallets]);
     });

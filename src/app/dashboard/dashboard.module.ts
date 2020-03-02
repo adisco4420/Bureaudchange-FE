@@ -7,13 +7,23 @@ import { DashLayoutComponent } from './dash-layout/dash-layout.component';
 import { DashHeaderComponent } from './core/dash-header/dash-header.component';
 import { DashFooterComponent } from './core/dash-footer/dash-footer.component';
 import { DashSidebarComponent } from './core/dash-sidebar/dash-sidebar.component';
+import { FundWalletComponent } from './fund-wallet/fund-wallet.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [LandingComponent, DashLayoutComponent, DashHeaderComponent, DashFooterComponent, DashSidebarComponent],
+  declarations: [
+    LandingComponent,
+    DashLayoutComponent,
+    DashHeaderComponent,
+    DashFooterComponent,
+    DashSidebarComponent,
+    FundWalletComponent
+  ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

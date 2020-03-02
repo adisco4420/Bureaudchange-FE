@@ -1,0 +1,118 @@
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .headline {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 400; 
+  }
+  
+  .card {
+    margin: 1.5em auto 0 auto;
+    max-width: 400px;
+    padding: 1.5em;
+    background-color: #fff;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  }
+  
+  form {
+    margin-top: 24px;  
+  }
+  
+  form .row {
+    margin-bottom: 24px;
+  }
+  
+  form .row:last-child {
+    margin-bottom: 0;
+  }
+  
+  input[type="number"],
+  select {
+    margin: 0 16px 0 0;
+    padding: 0;
+    float: left;
+    height: 36px;
+    font-size: 14px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+  }
+  
+  input[type="text"]:focus,
+  select:focus { 
+    color: #000;
+    border-bottom: 2px solid #2196F3;
+  }
+  
+  form input[disabled],
+  form button[disabled] {
+    opacity: .65;
+    cursor: not-allowed;
+  }
+  
+  option:checked { display: none; }
+  
+  .button {
+    display: block;
+    margin: 24px 0 0 0;
+    padding: .7em;
+    border: 0;
+    font-size: 14px;
+    font-weight: 500;
+    // text-transform: uppercase;
+    color: #fff;
+    background-color: #2196F3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button:hover,
+  .button:focus {
+    outline: none;
+    background-color: #0d8aee;
+  }
+  
+  form .error,
+  form .error:hover {
+    font-size: .8em;
+    font-weight: 500;
+    color: red;
+    background-color: transparent;
+    border-bottom-color: red;
+  }
+  .fund-type p{
+      color: black;
+      text-transform: capitalize;
+      font-size: 1.3em;
+  }
+  .fund-type p span{
+    color: rgb(11, 55, 175);
+    font-size: 1.6em;
+    margin-right: 20px;
+}
+input[type='submit']{
+  padding: 5px 25px;
+}
+.fund-type input[type='radio']{
+    opacity: 0;
+}
+.label {
+  background-color: #2196F3;
+}
+.radio-bg{
+  background-color: white;
+  box-shadow: 0px 9px 32px 0px rgba(0, 0, 0, 0.26);
+  border-radius: 3px;
+  font-weight: 500;
+  padding: 10px 20px;
+  margin-left: 10px;
+}
+ input[type='radio']:checked ~ .radio-bg{
+  background-color: rgb(184, 178, 178);
+  padding: 10px 20px;
+}

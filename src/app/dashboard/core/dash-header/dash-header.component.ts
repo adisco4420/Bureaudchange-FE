@@ -13,7 +13,9 @@ export class DashHeaderComponent implements OnInit {
   constructor(
     private authSrv: AuthService,
     private router: Router) {
-    this.user = this.authSrv.currentUserValue;
+    this.authSrv.currentUserValue.subscribe(res => {
+      this.user = res;
+    });
   }
 
   ngOnInit() {}

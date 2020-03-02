@@ -10,7 +10,7 @@ import { UserI } from './components/user.model';
 })
 export class AuthService {
   userApi = `${environment.baseUrl}/user`;
-  private currentUserSubject: BehaviorSubject<UserI>;
+  public currentUserSubject: BehaviorSubject<UserI>;
   public currentUser: Observable<UserI>;
 
 
@@ -36,8 +36,12 @@ export class AuthService {
   userPinSetup(pin) {
     return this.http.patch(`${this.userApi}/pin-setup`, {pin}, this.gs.getAuthHeader());
   }
-  public get currentUserValue(): UserI {
-    return this.currentUserSubject.value;
+  public get currentUserValue(): Observable<UserI> {
+    return this.currentUserSubject;
+  }
+  updateUserData(token) {
+    this.currentUserSubject.next(this.gs.getCurrentUser);
+    return this.gs.storeToken(token);
   }
   logout() {
     localStorage.removeItem(this.gs.currentUser);
