@@ -11,7 +11,7 @@ import { GeneralService } from 'src/app/shared/general.service';
 })
 export class FundWalletComponent implements OnInit {
   form: FormGroup;
-  currencyList: UserWalletI[] = [];
+  currencyList: UserWalletI[];
   paymentType =  [
   { name: 'Fund with card', value: 'card', icon: 'fa fa-credit-card'},
   { name: 'Fund with paypal', value: 'paypal', icon: 'fa fa-cc-paypal'}

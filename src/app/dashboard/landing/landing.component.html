@@ -1,4 +1,5 @@
 <div class="main-content-inner">
+    <ng-container *ngIf="walletList;else loading">
     <div class="sales-report-area my-3">
         <div class="row d-flex justify-content-between overflow-x-auto " style="overflow-x: auto;" *ngIf="walletList">
             <div class="col-md-4 col-10 currency" *ngFor="let wallet of walletList"> 
@@ -115,6 +116,9 @@
                               </div>
                               <!-- exchange area end -->
       </div>
-
     <!--blog and exchange-->
+    </ng-container>
+    <ng-template #loading>
+        <app-loader [type]="'wave'" ></app-loader>
+    </ng-template>
 </div>
