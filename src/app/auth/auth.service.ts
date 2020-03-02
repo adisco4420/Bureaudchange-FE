@@ -43,9 +43,16 @@ export class AuthService {
     this.currentUserSubject.next(this.gs.getCurrentUser);
     return this.gs.storeToken(token);
   }
+  isLogin() {
+    if (this.gs.getToken) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   logout() {
     localStorage.removeItem(this.gs.currentUser);
-    this.currentUserSubject.next(null);
+    // this.currentUserSubject.next(null);
   }
 
 

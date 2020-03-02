@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { UserWalletI } from 'src/app/auth/components/user.model';
 import { GeneralService } from 'src/app/shared/general.service';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnDestroy {
   unscribe = new Subject();
   walletList: UserWalletI[];
   constructor(
@@ -20,7 +20,6 @@ export class LandingComponent implements OnInit {
     public gs: GeneralService,
     private toastr: ToastrService,
     private router: Router) {}
-
   ngOnInit() {
     this.getUserProfile();
   }
@@ -38,6 +37,11 @@ export class LandingComponent implements OnInit {
   }
   addCurrency() {
     this.router.navigate(['/auth/wallet-setup'], {queryParams: {addCurrency: 'true'}});
+  }
+
+  ngOnDestroy() {
+    this.unscribe.next();
+    this.unscribe.complete();
   }
 
 }

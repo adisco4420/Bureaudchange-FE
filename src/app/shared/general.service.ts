@@ -37,7 +37,7 @@ export class GeneralService {
     return data && data.data && data.data.data ? data.data.data : [];
   }
   get getToken() {
-    return localStorage.getItem(this.currentUser);
+    return JSON.parse(localStorage.getItem(this.currentUser));
   }
   get getCurrentUser(): UserI {
     let user = null;
@@ -55,7 +55,7 @@ export class GeneralService {
     return httpOptions;
   }
   storeToken(token: string) {
-    localStorage.setItem(this.currentUser, token);
+    localStorage.setItem(this.currentUser, JSON.stringify(token));
   }
   decodeToken(token) {
     return jwtDecode(token);
