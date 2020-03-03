@@ -36,7 +36,7 @@ export class LoginComponent implements  OnDestroy {
         this.error = null;
         this.toastr.success('Login Successful');
       }, err => {
-        this.error = this.gs.getError(err);
+        this.error = err.error;
       }).add(() => {
         this.loading = false;
       });

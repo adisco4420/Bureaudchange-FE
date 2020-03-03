@@ -24,11 +24,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                     this.router.navigate(['/auth/login']);
                     break;
                 case 400:
-                    return throwError(err);
+                    return throwError(this.gs.getError(err));
                 case 412:
-                    return throwError(err.error.data ? err.error.data : err.error);
+                    return throwError(this.gs.getError(err));
                 default:
-                    return throwError('Sorry this operation could not be completed at this time.');
+                    return throwError(this.gs.getError(err));
             }
             const error = this.gs.getError(err);
             return throwError(error);

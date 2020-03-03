@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
 import jwtDecode from 'jwt-decode';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { UserI } from '../auth/components/user.model';
 
 @Injectable({
@@ -22,13 +22,17 @@ export class GeneralService {
   swtError(error) {
     return Swal.fire({
       title: 'Failed',
-      text: this.getError(error) || 'Error',
+      text: error.error || 'Error',
       icon: 'error',
       confirmButtonText: 'Ok'
     });
   }
-  getError(error) {
-    return error && error.error && error.error.data && error.error.data.msg ? error.error.data.msg : 'Error occured try again';
+  getError(error: HttpErrorResponse): {status: number, error: string} {
+    const newError =  error && error.error && error.error.data
+    && error.error.data.msg ? error.error.data.msg :
+    'Error occured try again';
+    const result = {status: error.status, error: newError};
+    return result;
   }
   getSucessMsg(data) {
     return data && data.data && data.data.msg ? data.data.msg : 'Successful';
