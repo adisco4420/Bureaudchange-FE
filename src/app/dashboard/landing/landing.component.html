@@ -1,7 +1,7 @@
 <div class="main-content-inner">
     <ng-container *ngIf="walletList;else loading">
     <div class="sales-report-area my-3">
-        <div class="row d-flex justify-content-between overflow-x-auto " style="overflow-x: auto;" *ngIf="walletList">
+        <div class="row d-flex justify-content-start overflow-x-auto " style="overflow-x: auto;" *ngIf="walletList">
             <div class="col-md-4 col-10 currency" *ngFor="let wallet of walletList"> 
                 <div class="single-report mb-xs-30  rounded" [style.background-color]="gs.getCurrencyColor(wallet.symbol).bg || 'black'">
                     <div class="s-report-inner pr--20 pt--30 mb-3">
@@ -11,7 +11,7 @@
                          
                         </div>
                         <div class="d-flex justify-content-between pb-2">
-                            <h2 class="text-light">{{wallet.sign}} {{wallet.balance | currency:" ":false }}</h2>
+                            <h2 class="text-light">{{wallet.sign}} {{wallet.balance | currency:" ":" " }}</h2>
 
                         </div>
                         <span style="font-size:3em;color:white" class="fa fa-plus-circle"></span>
