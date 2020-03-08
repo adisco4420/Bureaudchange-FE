@@ -14,6 +14,7 @@ export interface CurrencyI {
 })
 export class WalletService {
   userApi = `${environment.baseUrl}/user`;
+  fdWalletApi = `${environment.baseUrl}/fund-wallet`;
   constructor(
     private http: HttpClient,
     private gs: GeneralService) { }
@@ -21,6 +22,9 @@ export class WalletService {
   walletSetup({name, symbol, sign}) {
     const payload = {name, symbol, sign};
     return this.http.patch(`${this.userApi}/wallet-setup`, payload, this.gs.getAuthHeader());
+  }
+  fetchStripeSesId(payload) {
+    return this.http.post('http://localhost:8080/fund-wallet' + '/get-stripe-session-id', payload);
   }
 
   getAllCurrency(): CurrencyI[] {
@@ -31,7 +35,7 @@ export class WalletService {
       { name: 'Nigerian Naira', symbol: 'NGN', sign: '₦', flagName: 'nigeria'},
       { name: 'UAE Dirham', symbol: 'AED', sign: '	د.إ', flagName: 'united-arab-emirates'},
       { name: 'Chinese Yuan', symbol: 'CNY', sign: '¥', flagName: 'china'},
-      { name: 'Ghanian Cedi', symbol: 'GHS', sign: '₵', flagName: 'ghana'},
+      // { name: 'Ghanian Cedi', symbol: 'GHS', sign: '₵', flagName: 'ghana'},
     ];
   }
 

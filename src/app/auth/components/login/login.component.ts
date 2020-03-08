@@ -30,9 +30,7 @@ export class LoginComponent implements  OnDestroy {
       this.authSrv.login(form.value).pipe(takeUntil(this.unscribe)).subscribe(res => {
         const token = this.gs.getSuccessData(res);
         this.gs.storeToken(token);
-        const data = this.gs.decodeToken(token);
-        const navigateTo = data.wallet.length >= 2 ? '/dashboard' : '/auth/wallet-setup';
-        this.router.navigate([navigateTo]);
+        this.router.navigate(['/dashboard']);
         this.error = null;
         this.toastr.success('Login Successful');
       }, err => {

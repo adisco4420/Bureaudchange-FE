@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   baseUrl: 'https://bureaudchange.herokuapp.com',
-  appName: 'KashXchange'
+  appName: 'KashXchange',
+  stripeTestKey: 'pk_test_vHIaSEra9WpCvquoyD72oiVa',
+  hostUrl: 'http://localhost:4200'
 };
 
 /*

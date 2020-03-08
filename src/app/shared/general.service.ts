@@ -3,12 +3,13 @@ import Swal from 'sweetalert2';
 import jwtDecode from 'jwt-decode';
 import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { UserI } from '../auth/components/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneralService {
-  currentUser = 'currentUser';
+  currentUser = environment.appName + '_User';
   constructor() { }
 
   swtSuccess(res) {
@@ -27,6 +28,14 @@ export class GeneralService {
       confirmButtonText: 'Ok'
     });
   }
+  swtWarning(msg) {
+    return Swal.fire({
+      title: 'Cancelled',
+      text: msg || 'Warning',
+      icon: 'warning',
+      confirmButtonText: 'Ok'
+    });
+  }
   getError(error: HttpErrorResponse): {status: number, error: string} {
     const newError =  error && error.error && error.error.data
     && error.error.data.msg ? error.error.data.msg :
@@ -35,7 +44,7 @@ export class GeneralService {
     return result;
   }
   getSucessMsg(data) {
-    return data && data.data && data.data.msg ? data.data.msg : 'Successful';
+    return data && data.data && data.data.msg ? data.data.msg : (data || 'Successful');
   }
   getSuccessData(data) {
     return data && data.data && data.data.data ? data.data.data : [];

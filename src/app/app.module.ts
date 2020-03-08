@@ -12,6 +12,7 @@ import { MainLayoutComponent } from './core/components/main-layout/main-layout.c
 import { MainHeaderComponent } from './core/components/main-header/main-header.component';
 import { MainFooterComponent } from './core/components/main-footer/main-footer.component';
 import { ErrorInterceptor } from './inteceptor/error.interceptor';
+import { JwtInterceptor } from './inteceptor/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { ErrorInterceptor } from './inteceptor/error.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })

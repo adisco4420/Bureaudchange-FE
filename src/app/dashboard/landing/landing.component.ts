@@ -25,9 +25,8 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
 
   getUserProfile() {
-    this.authSrv.userProfile().pipe(takeUntil(this.unscribe)).subscribe((res: any) => {
-      const token = this.gs.getSuccessData(res);
-      const data = this.gs.decodeToken(token);
+    this.authSrv.fetchWalletBalance().pipe(takeUntil(this.unscribe)).subscribe((res: any) => {
+      const data = this.gs.getSuccessData(res);
       this.walletList = data && data.wallet ? data.wallet : [];
       if (this.walletList.length <= 1) {
         this.toastr.warning('Setup Wallet');

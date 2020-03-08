@@ -5,40 +5,33 @@
       
 
           <ng-container >
-              <h2 class="headline">How much do to you want to fund*</h2>
+              <h6 class="text-center">How much do to you want to fund?</h6>
             <form  [formGroup]="form" (ngSubmit)="fundWallet()">  
               <!-- <pre>{{ funds.value | json}} </pre>    -->
-            <div class="row">  
+            <div class="row d-flex justify-content-center text-center">  
           
               <div class="col-md-4">
-        
-
                   <select class="form-control" formControlName="currency">
                       <option *ngFor="let cun of currencyList" value="{{cun.symbol}}"  >
                         {{cun.symbol}}
                       </option>
                     </select><br><br>
-                    <!-- <div class="text-danger "   
-                    *ngIf="currency.invalid  && formError">
+                    <div class="text-danger text-left "  *ngIf="form.controls.currency.invalid  && formError">
                      <b>*required</b>
-                  </div> -->
+                  </div>
               </div>
               <div class="col-md-8">
                 <div class="currency">
                   <input type="number"  formControlName="amount"
                   class="form-input" placeholder="Payment Amount" ><br><br>
-                  <!-- <div class="text-danger"  
-                *ngIf="price.invalid  && formError">  
+                  <div class="text-danger text-left" *ngIf="form.controls.amount.invalid  && formError">  
                  <b>*required</b>
-              </div> -->
+              </div>
                 </div>
-                <!-- <div class="text-danger col-md-10"  
-                *ngIf="price.invalid && price.touched"> 
-                 <b>*required</b>
-              </div> -->
+        
               </div>
             </div>
-            <div class="row fund-type">
+            <div class="row fund-type text-center">
               <div class="col-md-12">
                 <h6>How would you like to fund your Wallet?</h6>
                 <hr>
@@ -51,10 +44,9 @@
                             <p><span class="{{payment.icon}}"></span>{{payment.name}} </p>
                           </div>
                       </label>
-                  <!-- <div class="text-danger "  
-                  *ngIf="fundType.invalid  && formError">
+                  <div class="text-danger ml-2" *ngIf="form.controls.fundType.invalid  && formError">
                    <b>*required</b>
-                </div> -->
+                </div>
          
                 </div>
        
@@ -64,7 +56,10 @@
 
             </div>
            <div class="col-md-12 text-center">
-              <input type="submit"   id="submit" class="btn btn-info d-flex" value="Next">
+              <button type="submit" [disabled]="disBtn"  id="submit" class="btn btn-info py-2 text-capitalize" >
+                <span *ngIf="!disBtn">Fund Now</span>
+                <app-loader *ngIf="disBtn" ></app-loader>
+              </button>
            </div>
           </form>
           </ng-container>
