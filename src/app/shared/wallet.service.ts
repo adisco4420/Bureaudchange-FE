@@ -24,7 +24,7 @@ export class WalletService {
     return this.http.patch(`${this.userApi}/wallet-setup`, payload, this.gs.getAuthHeader());
   }
   fetchStripeSesId(payload) {
-    return this.http.post('http://localhost:8080/fund-wallet' + '/get-stripe-session-id', payload);
+    return this.http.post(this.fdWalletApi + '/get-stripe-session-id', payload);
   }
 
   getAllCurrency(): CurrencyI[] {

@@ -9,7 +9,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 
-declare const Stripe;
+declare let Stripe;
+declare const getpaidSetup;
 
 @Component({
   selector: 'app-fund-wallet',
@@ -18,6 +19,7 @@ declare const Stripe;
 })
 export class FundWalletComponent implements OnInit, OnDestroy {
   private unscribe = new Subject();
+  user: UserI;
   form: FormGroup;
   currencyList: UserWalletI[];
   disBtn = false;
@@ -34,8 +36,8 @@ export class FundWalletComponent implements OnInit, OnDestroy {
     private gs: GeneralService,
     private authSrv: AuthService,
     private walletSrv: WalletService) {
-      this.stripe = Stripe(environment.stripeTestKey);
       this.authSrv.fetchWalletBalance().subscribe((res: UserI) => {
+        this.stripe = Stripe(environment.stripeTestKey);
         const data = this.gs.getSuccessData(res);
         this.currencyList = data && data.wallet ? data.wallet : [];
       });
@@ -44,14 +46,18 @@ export class FundWalletComponent implements OnInit, OnDestroy {
         fundType: [ '', Validators.required],
         currency: ['', Validators.required]
       });
+      this.user = this.gs.getCurrentUser;
       this.getRedirect();
   }
-  ngOnInit() {
-  }
+  ngOnInit() {}
   fundWallet() {
     if (this.form.valid) {
       this.disBtn = true;
-      this.getStripeSesId();
+      if (this.form.value.currency === 'NGN') {
+        this.payWithRave();
+      } else {
+        this.getStripeSesId();
+      }
     } else {
       this.formError = true;
     }
@@ -61,9 +67,6 @@ export class FundWalletComponent implements OnInit, OnDestroy {
       sessionId
     }).then((result) => {
       console.log(result);
-      // If `redirectToCheckout` fails due to a browser or network
-      // error, display the localized error message to your customer
-      // using `result.error.message`.
     }).catch(err => {
       console.log(err);
     });
@@ -103,6 +106,44 @@ export class FundWalletComponent implements OnInit, OnDestroy {
     });
   }
 
+  payWithRave() {
+      const x = getpaidSetup({
+          PBFPubKey:  environment.flutterwaveTestKey,
+          customer_email: this.user.email,
+          amount: this.form.value.amount,
+          customer_phone: this.user.phoneNumber,
+          currency: "NGN",
+          txref: "rave-123456",
+          meta: [{
+              metaname: "flightID",
+              metavalue: "AP1234"
+          }],
+          onclose: () => {
+              // this.gs.swtWarning('Fund Wallet operating was cancelled');
+          },
+          callback: (response) => {
+              const txref = response.data.txRef; // collect txRef returned and pass to a 					server page to complete status check.
+              console.log("This is the response returned after a charge", response);
+              if (
+                  response.data.chargeResponseCode == "00" ||
+                  response.data.chargeResponseCode == "0"
+              ) {
+                this.gs.swtSuccess('Wallet Fund Successful').then(res => {
+                  if (res.value) {
+                    this.router.navigate(['/dashboard']);
+                  }
+                });
+                  // redirect to a success page
+              } else {
+                  // redirect to a failure page.
+                this.gs.swtError('Error occured when trying to Fund Wallet');
+
+              }
+
+              x.close(); // use this to close the modal immediately after payment.
+          }
+      });
+  }
   ngOnDestroy() {
     this.unscribe.next();
     this.unscribe.complete();
