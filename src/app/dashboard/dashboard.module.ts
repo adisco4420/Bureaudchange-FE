@@ -9,6 +9,7 @@ import { DashFooterComponent } from './core/dash-footer/dash-footer.component';
 import { DashSidebarComponent } from './core/dash-sidebar/dash-sidebar.component';
 import { FundWalletComponent } from './fund-wallet/fund-wallet.component';
 import { SharedModule } from '../shared/shared.module';
+import { BuySellComponent } from './buy-sell/buy-sell.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
     DashHeaderComponent,
     DashFooterComponent,
     DashSidebarComponent,
-    FundWalletComponent
+    FundWalletComponent,
+    BuySellComponent
   ],
   imports: [
     CommonModule,
