@@ -2,7 +2,7 @@
     <ng-container *ngIf="walletList;else loading">
     <div class="sales-report-area my-3">
         <div class="row d-flex justify-content-start overflow-x-auto " style="overflow-x: auto;" *ngIf="walletList">
-            <div class="col-md-4 col-10 currency" *ngFor="let wallet of walletList"> 
+            <div class="col-md-4  col-10 currency" *ngFor="let wallet of walletList"> 
                 <div class="single-report mb-xs-30  rounded" [style.background-color]="gs.getCurrencyColor(wallet.symbol).bg || 'black'">
                     <div class="s-report-inner pr--20 pt--30 mb-3">
                         <div class="icon" [style.background-color]="gs.getCurrencyColor(wallet.symbol).icon || 'grey'">{{wallet.sign}}</div>
