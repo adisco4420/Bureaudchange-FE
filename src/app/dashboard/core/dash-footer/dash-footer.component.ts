@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dash-footer.component.scss']
 })
 export class DashFooterComponent implements OnInit {
+  year = new Date().getFullYear();
   appName = environment.appName;
   constructor() { }
 
