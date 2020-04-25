@@ -24,8 +24,8 @@ export class FundWalletComponent implements OnInit, OnDestroy {
   currencyList: UserWalletI[];
   disBtn = false;
   paymentType =  [
-  { name: 'Fund with card', value: 'card', icon: 'fa fa-credit-card'},
-  { name: 'Fund with paypal', value: 'paypal', icon: 'fa fa-cc-paypal'}
+  { name: 'debit card', value: 'card', icon: 'fa fa-credit-card'},
+  { name: 'bank transfer', value: 'bank-transfer', icon: 'fa fa-bank'}
 ];
   stripe;
   formError = false;
@@ -37,7 +37,9 @@ export class FundWalletComponent implements OnInit, OnDestroy {
     private authSrv: AuthService,
     private walletSrv: WalletService) {
       this.authSrv.fetchWalletBalance().subscribe((res: UserI) => {
-        this.stripe = Stripe(environment.stripeTestKey);
+        if ((window as any).Stripe) {
+          this.stripe = Stripe(environment.stripeTestKey);
+        }
         const data = this.gs.getSuccessData(res);
         this.currencyList = data && data.wallet ? data.wallet : [];
       });
@@ -85,7 +87,11 @@ export class FundWalletComponent implements OnInit, OnDestroy {
       const session = this.gs.getSuccessData(res);
       this.loadStripe(session.id);
     }, err => {
-      console.log(err);
+      let errMsg = err.error;
+      if (err.error && err.error.includes('currencyconverterapi')) {
+        errMsg = 'Please try again later error occured from currency api';
+      }
+      this.gs.swtWarning(errMsg);
     }).add(() => {
       this.disBtn = false;
     });
@@ -122,23 +128,23 @@ export class FundWalletComponent implements OnInit, OnDestroy {
               // this.gs.swtWarning('Fund Wallet operating was cancelled');
           },
           callback: (response) => {
-              const txref = response.data.txRef; // collect txRef returned and pass to a 					server page to complete status check.
+              const txref = response.data.txRef; // collect txRef returned and pass to a server page to complete status check.
               console.log("This is the response returned after a charge", response);
               if (
-                  response.data.chargeResponseCode == "00" ||
-                  response.data.chargeResponseCode == "0"
+                  response.respcode === "00" ||
+                  response.respcode === "0"
               ) {
+                // redirect to a success page
                 this.gs.swtSuccess('Wallet Fund Successful').then(res => {
                   if (res.value) {
                     this.router.navigate(['/dashboard']);
                   }
                 });
-                  // redirect to a success page
               } else {
-                  // redirect to a failure page.
-                this.gs.swtError('Error occured when trying to Fund Wallet');
-
+                // redirect to a failure page.
+                this.gs.swtError({error: 'Error occured when trying to Fund Wallet'});
               }
+              this.disBtn = false;
 
               x.close(); // use this to close the modal immediately after payment.
           }
