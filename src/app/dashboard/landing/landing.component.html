@@ -1,7 +1,11 @@
 <div class="main-content-inner">
     <ng-container *ngIf="walletList;else loading">
     <div class="sales-report-area my-3">
+        <div class="text-right mb-2">
+            <button class="btn btn-blue text-capitalize" (click)="addCurrency()" ><span class="fa fa-plus"></span> Add Currency</button>
+        </div>
         <div class="row d-flex justify-content-start overflow-x-auto " style="overflow-x: auto;" *ngIf="walletList">
+      
             <div class="col-md-4  col-10 currency" *ngFor="let wallet of walletList"> 
                 <div class="single-report mb-xs-30  rounded" [style.background-color]="gs.getCurrencyColor(wallet.symbol).bg || 'black'">
                     <div class="s-report-inner pr--20 pt--30 mb-3">
@@ -21,76 +25,91 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-info" (click)="addCurrency()" ><span class="fa fa-plus"></span> Add New Currency</button>
     <!--  Money-->
     <!-- row area start-->
     <div class="row mt-3">
         <!--live currency-->
-      <div class="col-lg-5">
-          <div class="card">
-              <!-- <div class="card-body">
-                  <h4 class="header-title">Live Currency Exchange Price</h4>
-                  <hr>
-                  <div class="cripto-live mt-5">
-                          <div *ngIf="!currencyRate">
-                              <img src="/assets/images/Disk.gif" alt="spinner">
-                          </div>
-                      <ul *ngIf="currencyRate">
-                          <li *ngFor="let currency of newCurrencyArray">
-                              <div class='{{currency.class}}'>{{currency.sign}}</div> {{currency.currency}} 
-                              <span>{{currency.rate | currency:currency.symbol }}</span></li>
-                 
-                      </ul>
-                  </div>
-              </div> -->
-          </div> 
-      </div>
+    
         <!--live currency-->
                <!-- trading history area start -->
-               <!-- <div class="col-lg-7 mt-sm-30 mt-xs-30">
-                      <div class="card" *ngIf="!transHtry && transHtry.length > 1">
-                          <img src="/assets/spinner/block.gif" 
-                                alt="loading">
-                      </div>
-                      <div class="card" *ngIf="transHtry.length > 1 && transHtry">
-                              <div class="card-body">
-                                  <h4 class="header-title">Transcation History</h4>
-                                  <div class="single-table">
-                                      <div class="table-responsive">
-                                          <table class="table text-center"  *ngFor="let tran of transHtry">
-                                              <thead class="text-uppercase">
-                                                  <tr><b>{{tran.date}}</b></tr>
-                                                 
-                                              </thead>
-                                              <tbody *ngFor="let detail of tran.trans">
-                                                  <tr>
-                                                      <td><span class="fa fa-{{detail.icon}} fa-2x"></span></td>
-                                                      <td>{{detail.title}}
-                                                              <p [innerHTML]='detail.detail'></p>
-                                                          </td>
-                                                          <td>{{detail.price}}</td>
-                                                  </tr>
-                            
-                                              </tbody>
+               <div class="col-lg-7 mt-sm-30 mt-xs-30">
+                    <ng-container *ngIf="transList; else loadingTrans">
+                        <div class="card" *ngIf="transList.length > 1; else noTrans">
+                            <div class="card-body">
+                                <h4 class="header-title">Transcation History</h4>
+                                <div class="single-table">
+                                    <div class="table-responsive">
+                                        <table class="table text-center"  *ngFor="let tran of transList">
+                                            <thead class="text-uppercase">
+                                                <tr><b>{{tran.date | date}}</b></tr>
+                                               
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td [ngSwitch]="tran.source">
+                                                        <span *ngSwitchCase="'card'" class="fa fa-credit-card fa-2x"></span>
+                                                        <span *ngSwitchCase="'wallet'" class="fa fa-exchange fa-2x"></span>
+                                                        <span *ngSwitchDefault class="fa fa-money fa-2x"></span>
+                                                    </td>
+                                                    <td>{{transUtil.getText(tran)}}
+                                                            <p>{{cunbySymbol(tran.payCun).sign || cunbySymbol(tran.recieveCun).sign}}{{tran.amount | number}}</p>
+                                                        </td>
+                                                        <td [ngSwitch]="tran.status">
+                                                            <span *ngSwitchCase="'success'" class="status-p bg-success">success</span>
+                                                            <span *ngSwitchCase="'failed'" class="status-p bg-danger">failed</span>
+                                                            <span *ngSwitchDefault class="status-p bg-warning">pending</span>
+                                                            
+                                                        </td>
+                                                </tr>
+                          
+                                            </tbody>
 
-                                           
-                                          </table>
-                                          <h6><a routerLink="/transaction-history" class="text-info">Load More</a></h6>
-                                      </div>
-                                  </div>
-                              </div>
-                      </div>
-                      <div class="card" *ngIf="transHtry.length < 1">
-                          <img src="https://cdn.dribbble.com/users/1038710/screenshots/2813751/19.jpg" 
-                               alt="no transaction">
-                      </div>
-                  </div> -->
+                                         
+                                        </table>
+                                        <h6><a routerLink="/transaction-history" class="text-info">Load More</a></h6>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <ng-template #noTrans>
+                        <div class="card" *ngIf="transList.length < 1">
+                            <img src="https://cdn.dribbble.com/users/1038710/screenshots/2813751/19.jpg" 
+                                 alt="no transaction">
+                        </div>
+                    </ng-template>
+                    </ng-container>
+                    <ng-template #loadingTrans>
+                        <div class="card" >
+                            <img src="/assets/spinner/block.gif" 
+                                  alt="loading">
+                        </div>
+                    </ng-template>
+               
+                  </div>
                   <!-- trading history area end -->
+                  <div class="col-lg-5">
+                    <div class="card">
+                        <!-- <div class="card-body">
+                            <h4 class="header-title">Live Currency Exchange Price</h4>
+                            <hr>
+                            <div class="cripto-live mt-5">
+                                    <div *ngIf="!currencyRate">
+                                        <img src="/assets/images/Disk.gif" alt="spinner">
+                                    </div>
+                                <ul *ngIf="currencyRate">
+                                    <li *ngFor="let currency of newCurrencyArray">
+                                        <div class='{{currency.class}}'>{{currency.sign}}</div> {{currency.currency}} 
+                                        <span>{{currency.rate | currency:currency.symbol }}</span></li>
+                           
+                                </ul>
+                            </div>
+                        </div> -->
+                    </div> 
+                </div>
     </div>
 
     <!--blog and exchange-->
-      <div class="row mt-5">
-                          <!-- exchange area start -->
+      <!-- <div class="row mt-5">
                           <div class="col-xl-6 mt-md-30 mt-xs-30 mt-sm-30">
                                   <div class="card">
                                       <div class="card-body">
@@ -114,8 +133,7 @@
                                       </div>
                                   </div>
                               </div>
-                              <!-- exchange area end -->
-      </div>
+      </div> -->
     <!--blog and exchange-->
     </ng-container>
     <ng-template #loading>
