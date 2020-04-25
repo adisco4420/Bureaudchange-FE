@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit {
-  @Input() type: 'clip-rotate' | 'clockwise-fade' = 'clockwise-fade';
+  @Input() type: 'clip-rotate' | 'clockwise-fade'|'wave' = 'clockwise-fade';
   @Input() classes: string;
   constructor() { }
 
