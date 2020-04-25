@@ -1,1 +1,153 @@
-<p>buy-sell works!</p>
+<div class="container">
+    <ng-container *ngIf="currencyList; else loading">
+        <div *ngIf="showPage==='buy-sell'" class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card text-center my-4 border">
+                    <div class="card-body">
+                        <form [formGroup]="form" class="mt-0">
+                            <div class="row">
+                            <div class="col-12 mb-5">
+                                <h6>Exchange Currency</h6>
+                            </div>
+                            <div class="col">
+                                <select (change)="filteredCun()" formControlName="recieve" name="" id="" class="form-control">
+                                    <option disabled value="">Select Currency</option>
+                                    <option *ngFor="let cun of currencyList" [value]="cun.symbol">
+                                        {{cun.name+' ('+cun.symbol+')'}}
+                                    </option>
+                                </select> 
+                                <p class="text-left">You recieve</p>
+                            </div>
+                            <div class="col">
+                                <select  formControlName="pay" name="" id="" class="form-control">
+                                    <option disabled value="">Select Currency</option>
+                                    <option *ngFor="let cun of filteredCunList" [value]="cun.symbol">
+                                        {{cun.name+' ('+cun.symbol+')'}} 
+                                    </option>
+                                </select>   
+                                <p class="text-right">You pay</p>
+                            </div>
+                            <div class="col-12">
+                                <button (click)="next()" [disabled]="form.invalid || loadingRate" class="my-3 btn btn-block btn-blue">
+                                    <span *ngIf="!loadingRate">Next <i class="fa fa-forward"></i></span>
+                                    <app-loader *ngIf="loadingRate" ></app-loader>
+                                </button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="showPage==='trans-detail'" class="row trans-detail">
+            <div class="col-md-12">
+            <div class="card mb-5" >
+                
+                <h6 class=" text-dark text-center">Buy {{getCunDetail(form.value.recieve).name+' ('+form.value.recieve+')'}} 
+                        with {{getCunDetail(form.value.pay).name+' ('+form.value.pay+')'}}</h6>
+                <h5 class="text-center text-dark mt-4">
+                <span class="title">Available balance: </span>
+                <span class="detail">{{getCunDetail(form.value.pay).sign+(getCunDetail(form.value.pay).balance | number)}}</span>
+                </h5>
+                <h6 *ngIf="errMsg" class="text-danger text-center">{{errMsg}}</h6>
+
+                <form >  
+                    
+                <div [formGroup]="form" class="row mt-3">  
+                    <div class="col-md-6">
+                    <div class="currency">
+                        <span>{{getCunDetail(form.value.pay).sign}}</span> 
+                        <input  type="number" formControlName="amount"
+                        class="form-input" placeholder="Payment Amount" >
+                        <h6 class="text-dark m-0">
+                            <span class="title-sm">Total {{form.value.recieve}} to buy: </span>
+                            <span class="detail-sm">{{getCunDetail(form.value.recieve).sign}}{{(form.value.amount/ transRate | number)}}</span>     
+                        </h6>  
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                       <div class="mt-2">
+                        <h6 class=" title-sm">Transaction Rate:</h6>
+                        <h6 class="detail-sm"> 
+                            <span> 1 {{form.value.recieve}} = {{transRate+' '+form.value.pay}}</span>
+                        </h6>
+                       </div>
+                    </div>
+                
+                </div>
+                <div class="row fund-type">
+                    <div class="col-md-6">
+           
+                    <h6 class="text-dark m-0">
+                        <span class="title-sm">Transaction Fee: </span>
+                        <span class="detail-sm">{{getCunDetail(form.value.pay).sign}}{{TransFee | number}}</span>
+                    </h6>
+                        <h6 class="text-dark m-0">
+                            <span class="title-sm">Total Amount To Pay: </span>
+                            <span class="detail-sm">{{getCunDetail(form.value.pay).sign}}{{totalAmount | number}}</span>
+                        </h6>
+                    </div>
+
+                    <hr>
+                </div>
+                <div class="mt-2 d-flex justify-content-between">
+                    <button [disabled]="form.invalid || exchangeLoading" (click)="proceed()" class="btn btn-blue py-2">
+                        <span *ngIf="!exchangeLoading">Proceed</span>
+                        <app-loader *ngIf="exchangeLoading"></app-loader>
+                    </button>
+                    <button *ngIf="!exchangeLoading" (click)="goBack()" class="btn btn-secondary">Go Back <i class="ti-control-backward"></i></button>
+                </div>
+                    
+                </form>
+            
+            </div>
+            </div>
+        </div>
+        <div *ngIf="showPage==='trans-summary'">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card my-4">
+                        <div class="card-header text-center">
+                            <div class="card-title">Transaction Summary</div>
+                            <i class="fa fa-check-circle fa-3x text-success"></i>
+                        </div>
+                        <div class="card-body">
+                            <div class="tr-row">
+                                <p>You Recieve</p>
+                                <h6>{{getCunDetail(form.value.recieve).sign}}{{(form.value.amount/ transRate | number)}}</h6>
+                            </div>
+                            <div class="tr-row">
+                                <p>You Pay</p>
+                                <h6>{{getCunDetail(form.value.pay).sign}}{{(form.value.amount | number)}}</h6>
+                            </div>
+                            <div class="tr-row">
+                                <p>Rate</p>
+                                <h6>{{transRate}}</h6>
+                            </div>
+                            <div class="tr-row">
+                                <p>Transfer Fee</p>
+                                <h6>{{getCunDetail(form.value.pay).sign}}{{TransFee | number}}</h6>
+                            </div>
+                            <div class="tr-row">
+                                <p>Total Amount</p>
+                                <h6>{{getCunDetail(form.value.pay).sign}}{{totalAmount | number}}</h6>
+                            </div>
+                            <div class="tr-row">
+                                <p>Status</p>
+                                <h6 class="text-warning">Pending</h6>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a routerLink="/dashboard" class="btn btn-blue text-light">Done</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+    </ng-container>
+    <ng-template #loading>
+        <app-loader [type]="'wave'" ></app-loader>
+      </ng-template>
+</div>
