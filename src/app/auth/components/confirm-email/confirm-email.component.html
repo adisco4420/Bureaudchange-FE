@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-xl-5 mx-auto">
+        <div class="card card-signin flex-row my-5">
+    
+          <div class="card-body">
+            <h5 class="card-title text-center">Confirm Email Address</h5>
+            <div *ngIf="showLoader">
+              <div class="d-flex justify-content-center">
+                <app-loader [type]="'clip-rotate'" [classes]="'text-purple'" ></app-loader>
+              </div>
+              <h6 class="text-center my-4">Please wait while we confirm your email.</h6>
+            </div>
+            <div *ngIf="!showLoader">
+              <div class="text-center" *ngIf="status.type==='success'">
+                <div>
+                  <i class=" ti-email text-success ft-medium"></i>
+                </div>
+                <h6 class="my-3 text-capitalize">{{status.msg}}</h6>
+                <button routerLink="/auth/wallet-setup" class="btn btn-lg btn-primary btn-block text-uppercase" >Setup Wallet</button>
+              </div>
+              <div class="text-center" *ngIf="status.type==='error'">
+                <div>
+                  <i class=" ti-face-sad text-danger ft-medium"></i>
+                </div>
+                <h6 class="my-3">{{status.msg}}</h6>
+              </div>
+          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

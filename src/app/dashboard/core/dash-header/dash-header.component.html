@@ -1,0 +1,113 @@
+      <!-- header area start -->
+      <div class="header-area">
+        <div class="row align-items-center">
+            <!-- nav and search button -->
+            <div class="col-md-6 col-sm-8 clearfix">
+                <div class="nav-btn pull-left">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <!-- <div class="search-box pull-left">
+                    <form action="#">
+                        <input type="text" name="search" placeholder="Search..." required>
+                        <i class="ti-search"></i>
+                    </form>
+                </div> -->
+            </div>
+            <!-- profile info & task notification -->
+            <div class="col-md-6 col-sm-4 clearfix">
+                <ul class="notification-area pull-right">
+             
+                    <li class="dropdown">
+                        <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
+                            <span>2</span>
+                        </i>
+                        <div class="dropdown-menu bell-notify-box notify-box">
+                            <span class="notify-title">You have 2 new notifications <a href="#">view all</a></span>
+                            <div class="nofity-list">
+                                <a href="#" class="notify-item">
+                                    <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
+                                    <div class="notify-text">
+                                        <p>Verify your password</p>
+                                        <span>Just Now</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="notify-item">
+                                    <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
+                                    <div class="notify-text">
+                                        <p>Check your inbox </p>
+                                        <span>30 Seconds ago</span>
+                                    </div>
+                                </a>
+                   
+                            </div>
+                        </div>
+                    </li>
+                    <!-- <li class="dropdown"> 
+                        <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>2</span></i>
+                        <div class="dropdown-menu notify-box nt-enveloper-box">
+                            <span class="notify-title">You have 2 new notifications <a href="#">view all</a></span>
+                            <div class="nofity-list">
+                                <a href="#" class="notify-item">
+                                    <div class="notify-thumb">
+                                        <img src="/assets/dashboard/images/author/avatar.png" alt="image">
+                                    </div>
+                                    <div class="notify-text">
+                                        <p>Oladapo Lawore</p>
+                                        <span class="msg">confirm &pound;50 for me in your wallet...</span>
+                                        <span>5:30 AM</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="notify-item">
+                                    <div class="notify-thumb">
+                                        <img src="/assets/dashboard/images/author/avatar.png" alt="image">
+                                    </div>
+                                    <div class="notify-text">
+                                        <p>Sodiq Alabi</p>
+                                        <span class="msg">I have $20 to change to naira...</span>
+                                        <span>3:15 PM</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                    </li> -->
+                    <!-- <li class="settings-btn">
+                        <i class="ti-settings"></i>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- header area end -->
+    <!-- page title area start -->
+    <div class="page-title-area">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <div class="breadcrumbs-area clearfix">
+                    <h5 class="page-title pull-left">Dashboard</h5>
+                    <!-- <ul class="breadcrumbs pull-left">
+                        <li><a routerLink="/wallet">Home</a></li>
+                        <li><span>{{rot}}</span></li> 
+                    </ul>  -->
+                </div>
+            </div> 
+            <div class="col-sm-6 clearfix">
+                <div class="user-profile pull-right">
+                    <img class="avatar user-thumb" src="/assets/dashboard/images/author/avatar.png" alt="avatar">
+                    <p class="user-name dropdown-toggle" data-toggle="dropdown">{{'Hello'}} 
+                        <span *ngIf="!user"><img src="/assets/images/ring.gif" alt="username"></span>
+                        <span *ngIf="user">{{user.firstName}}</span>
+                        <i class="fa fa-angle-down"></i>
+                    </p>
+                    <div class="dropdown-menu">
+                        <!-- <a class="dropdown-item" href="#">Message</a>
+                        <a class="dropdown-item" href="#">Settings</a> -->
+                        <a class="dropdown-item" (click)='logout()' >Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- page title area end -->

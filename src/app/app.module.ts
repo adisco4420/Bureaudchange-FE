@@ -1,12 +1,18 @@
-import { MainLayoutComponent } from './core/components/main-layout/main-layout.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './core/components/home/home.component';
+import { MainLayoutComponent } from './core/components/main-layout/main-layout.component';
 import { MainHeaderComponent } from './core/components/main-header/main-header.component';
 import { MainFooterComponent } from './core/components/main-footer/main-footer.component';
+import { ErrorInterceptor } from './inteceptor/error.interceptor';
+import { JwtInterceptor } from './inteceptor/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -14,13 +20,20 @@ import { MainFooterComponent } from './core/components/main-footer/main-footer.c
     HomeComponent,
     MainHeaderComponent,
     MainFooterComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

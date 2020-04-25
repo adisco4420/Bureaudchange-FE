@@ -113,7 +113,7 @@
 
 /* Normal desktop :992px. */
 
-@media (min-width: 1200px) and (max-width: 1364px) {
+@media (min-width: 1200px) and (max-width: 1204px) {
 
     /* sidebar */
     .sidebar-menu {

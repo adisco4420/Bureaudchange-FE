@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-xl-5 mx-auto"> 
+        <div class="card card-signin flex-row my-5">
+          <div class="card-body">
+            <h5 *ngIf="!isAddCurrncy" class="card-title text-center text-capitalize">{{showType}} Setup</h5>
+            <h5 class="card-title text-center text-capitalize">Add Currency</h5>
+
+             <!-- list of Currency -->
+             <ng-container *ngIf="showType==='wallet'">
+            <div class=" text-center mb-4">
+                <img class="img-fluid" style="width:120px" src="/assets/images/cash.png" alt="wallet">
+            </div>
+            <div *ngIf="!userWallets" class=" text-center mb-4">
+                <app-loader [type]="'clip-rotate'" [classes]="'text-purple'" ></app-loader>
+            </div>
+             <!-- Basic List Group start -->               
+            <ng-container *ngIf="userWallets">
+                <div class="card" >
+                    <div class="card-body">
+                        <h4 class="header-title text-center">Choose Preferred Currency</h4>
+                        <ul class="list-group currencyList" >
+                            <li class="list-group-item" *ngFor="let currency of filteredCurreny">
+                              <div class="row">
+                                <div class="col-3 float-left">
+
+                                    <img *ngIf="currency.name" [src]="flag.url+currency.flagName+flag.size" alt="img" style="width:30px">
+                                </div>
+                                <div class="col text-center">
+                                    <h6 >{{currency.name}}</h6>
+                                    <p>{{currency.symbol}}</p>
+                                  </div>
+                                <div class="col-3 float-right">
+                                    <button (click)="addCurrency(currency)" [disabled]="loading===currency.symbol" class="btn btn-success btn-sm float-right">
+                                        <span *ngIf="loading!==currency.symbol"  class=" ti-plus text-bold"></span>
+                                        <span *ngIf="loading===currency.symbol">...</span>
+                                      </button>
+                                </div>
+                              </div>
+                       
+                            </li>
+                            <li class="list-group-item" *ngFor="let currency of userWallets">
+                              <div class="row">
+                                <div class="col-3 float-left">
+                                    <img *ngIf="currency.name" [src]="flag.url+gs.getContryFlagName(currency.symbol)+flag.size" alt="img" style="width:30px">
+                                </div>
+                                <div class="col text-center">
+                                    <h6 >{{currency.name}}</h6>
+                                    <p>{{currency.symbol}}</p>
+                                  </div>
+                                <div class="col-3 float-right">
+                                    <!-- <button (click)="addCurrency(currency)" class="btn btn-danger btn-sm float-right">
+                                        <span class=" ti-close text-bold"></span>
+                                      </button> -->
+                                </div>
+                              </div>
+                       
+                            </li>
+                        </ul>
+                    </div>
+                    <span *ngIf="minimumCurrencyError" class="text-danger text-center mb-2">
+                      you must select up to 2 currencies
+                    </span>
+                   
+                    <div class="text-center mb-3">
+                       <button *ngIf="!isAddCurrncy" (click)="showPinSetup()" class="btn btn-md btn-primary  text-uppercase" type="submit">
+                         Next <span class=" ti-arrow-right"></span>
+                       </button>
+                       <button *ngIf="isAddCurrncy" (click)="gotoDashboard()" class="btn btn-md btn-primary  text-uppercase" type="button">
+                        Save <span class=" ti-arrow-right"></span>
+                      </button>
+                    </div>
+                </div>
+            </ng-container>
+             </ng-container>
+            <!-- list of Currency -->
+            <!-- Basic List Group end -->
+              
+          
+          <ng-container *ngIf="showType==='pin'">
+            <div class="text-center">
+              <img style="width:120px" src="https://cdn1.iconfinder.com/data/icons/ui-5/502/lock-512.png" alt="pin">
+            </div>
+            <form class="form-signinx" (ngSubmit)='pinSetup(pinVal)'>
+                <b><p class="text-dark mb-2 mt-2 text-center">Create a 5 digit pin for transcation</p></b>
+              <div class="form-label-group text-center">
+                <input type="number"  #pinVal="ngModel" name="pin" ngModel id="inputPassword" class="form-control text-center" 
+                placeholder="pin" required   autofocus>
+                <label for="inputPassword">Pin</label>
+                <div class="text-danger ml-2 mt-2" *ngIf="pinVal.valid && pinVal.touched">
+                  <div *ngIf='pinError'>Pin must be 5 digits</div>
+                </div>
+              </div>
+              <div class="text-center">
+                  <button [disabled]="pinVal.invalid || loadingPin" class="btn btn-md btn-primary  text-uppercase" type="submit">
+                      <span *ngIf="!loadingPin">Setup</span> 
+                      <app-loader *ngIf="loadingPin" ></app-loader> 
+                    </button>
+              </div>
+            </form>
+       
+          </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

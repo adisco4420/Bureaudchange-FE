@@ -1,0 +1,122 @@
+a.nav-link{
+    padding: 10px 0px;
+    font-size: 17px;
+    color: black;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .headline {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 400; 
+  }
+  
+  .card {
+    margin: 1.5em auto 0 auto;
+    max-width: 700px;
+    padding: 1.5em;
+    background-color: #fff;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  }
+  
+  form {
+    margin-top: 24px;  
+  }
+  
+  form .row {
+    margin-bottom: 24px;
+  }
+  
+  form .row:last-child {
+    margin-bottom: 0;
+  }
+  
+  input[type="number"],
+  select {
+    margin: 0 16px 0 0;
+    padding: 0;
+    // float: left;
+    height: 36px;
+    font-size: 14px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+  }
+  
+  input[type="text"]:focus,
+  select:focus { 
+    color: #000;
+    border-bottom: 2px solid #2196F3;
+  }
+  
+  form input[disabled],
+  form button[disabled] {
+    opacity: .65;
+    cursor: not-allowed;
+  }
+  
+  option:checked { display: none; }
+  
+  .button {
+    display: block;
+    margin: 24px 0 0 0;
+    padding: .7em;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button:hover,
+  .button:focus {
+    outline: none;
+
+  }
+  
+  form .error,
+  form .error:hover {
+    font-size: .8em;
+    font-weight: 500;
+    color: red;
+    background-color: transparent;
+    border-bottom-color: red;
+  }
+  .fund-type p{
+      color: black;
+      text-transform: capitalize;
+      font-size: 1.3em;
+  }
+  .fund-type p span{
+    color: rgb(11, 55, 175);
+    font-size: 1.6em;
+    margin-right: 20px;
+}
+.trans-detail {
+    .title{
+        font-size: 17px;
+    }
+    .title-sm {
+        font-weight: 300;
+        font-size: 14px;
+    }
+    .detail{
+        font-size: 20px;
+        font-weight: 400;
+    }
+    .detail-sm{
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+.tr-row{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.5px dashed gray;
+  margin-bottom: 5px;
+}

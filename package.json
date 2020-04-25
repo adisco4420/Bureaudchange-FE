@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-prod": "ng build --aot --output-hashing=all"
+    "build-prod": "ng build --aot --output-hashing=all --build-optimizer"
   },
   "private": true,
   "dependencies": {
@@ -20,7 +20,11 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "jwt-decode": "^2.2.0",
+    "ngx-pagination": "^5.0.0",
+    "ngx-toastr": "^10.1.0",
     "rxjs": "~6.4.0",
+    "sweetalert2": "^9.8.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

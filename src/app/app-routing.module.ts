@@ -3,11 +3,13 @@ import { HomeComponent } from './core/components/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
 const routes: Routes = [
   {path: '', component: MainLayoutComponent, children: [
-    { path: '', component: HomeComponent}
-  ]}
+    { path: '', component: HomeComponent},
+    {path: 'auth', loadChildren: './auth/auth.module#AuthModule'}
+  ]},
+  { path: '', loadChildren: './dashboard/dashboard.module#DashboardModule'},
+  { path: '**', redirectTo: '/' , pathMatch: 'full'},
 ];
 
 @NgModule({

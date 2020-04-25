@@ -24,14 +24,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [
               "./src/assets/js/jquery-3.2.1.min.js",
               "./src/assets/js/bootstrap.bundle.min.js",
-              // "./src/assets/js/owl.carousel.min.js",
-              "./src/assets/js/script.js"
-
+              "./src/assets/js/owl.carousel.min.js",
+              "./src/assets/dashboard/js/vendor/modernizr-2.8.3.min.js",
+              "./src/assets/dashboard/js/metisMenu.min.js",
+              "./src/assets/dashboard/js/jquery.slimscroll.min.js",
+              "./src/assets/dashboard/js/jquery.slicknav.min.js",
+              "./src/assets/dashboard/js/plugins.js",
+              "./src/assets/js/script.js",
+              "./src/assets/dashboard/js/scripts.js"
             ]
           },
           "configurations": {
@@ -126,6 +131,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "bureaudchange"
+    }
+  },
+  "defaultProject": "bureaudchange",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
