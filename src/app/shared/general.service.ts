@@ -37,9 +37,13 @@ export class GeneralService {
     });
   }
   getError(error: HttpErrorResponse): {status: number, error: string} {
-    const newError =  error && error.error && error.error.data
-    && error.error.data.msg ? error.error.data.msg :
-    'Error occured try again';
+    console.log(error.error);
+    let newError = 'Error occured try again';
+    if (error && error.error && error.error.data && error.error.data.msg) {
+      newError = error.error.data.msg;
+    } else if (error && error.error && error.error.data && error.error.data.error) {
+      newError = error.error.data.error;
+    }
     const result = {status: error.status, error: newError};
     return result;
   }
