@@ -10,6 +10,7 @@ import { DashSidebarComponent } from './core/dash-sidebar/dash-sidebar.component
 import { FundWalletComponent } from './fund-wallet/fund-wallet.component';
 import { SharedModule } from '../shared/shared.module';
 import { BuySellComponent } from './buy-sell/buy-sell.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { BuySellComponent } from './buy-sell/buy-sell.component';
     DashFooterComponent,
     DashSidebarComponent,
     FundWalletComponent,
-    BuySellComponent
+    BuySellComponent,
+    TransactionsComponent
   ],
   imports: [
     CommonModule,

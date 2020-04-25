@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashLayoutComponent } from './dash-layout/dash-layout.component';
 import { LandingComponent } from './landing/landing.component';
 import { FundWalletComponent } from './fund-wallet/fund-wallet.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
    children: [
      {path: 'dashboard', component: LandingComponent},
      {path: 'fund-wallet', component: FundWalletComponent},
-     {path: 'exchange', component: BuySellComponent}
+     {path: 'exchange', component: BuySellComponent},
+     {path: 'transactions', component: TransactionsComponent}
    ]}
 ];
 
