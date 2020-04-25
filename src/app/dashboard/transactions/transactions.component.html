@@ -7,21 +7,21 @@
                                 <div class="card-body">
                                     <div class="single-table">
                                         <div class="table-responsive">
-                                            <table class="table text-center"  *ngFor="let tran of transList">
+                                            <table class="table text-center"  *ngFor="let tran of transList|paginate: { itemsPerPage: 5, currentPage: p }">
                                                 <thead class="text-uppercase">
                                                     <tr><b>{{tran.date | date:'medium'}}</b></tr>
                                                 </thead>
                                                 <tbody >
                                                     <tr >
-                                                        <td [ngSwitch]="tran.source">
+                                                        <td colspan="3" [ngSwitch]="tran.source">
                                                             <span *ngSwitchCase="'card'" class="fa fa-credit-card fa-2x"></span>
                                                             <span *ngSwitchCase="'wallet'" class="fa fa-exchange fa-2x"></span>
                                                             <span *ngSwitchDefault class="fa fa-money fa-2x"></span>
                                                         </td>
-                                                        <td>{{transUtil.getText(tran)}}
+                                                        <td colspan="6">{{transUtil.getText(tran)}}
                                                             <p>{{cunbySymbol(tran.payCun).sign || cunbySymbol(tran.recieveCun).sign}}{{tran.amount | number}}</p>
                                                         </td>
-                                                        <td [ngSwitch]="tran.status">
+                                                        <td colspan="3" [ngSwitch]="tran.status">
                                                             <span *ngSwitchCase="'success'" class="status-p bg-success">success</span>
                                                             <span *ngSwitchCase="'failed'" class="status-p bg-danger">failed</span>
                                                             <span *ngSwitchDefault class="status-p bg-warning">pending</span>
@@ -32,7 +32,8 @@
                             
                                                     
                                             </table>
-                                            <nav aria-label="...">
+                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                            <!-- <nav aria-label="...">
                                                 <ul class="pagination">
                                                     <li class="page-item disabled">
                                                         <a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -46,7 +47,7 @@
                                                         <a class="page-link" href="#">Next</a>
                                                     </li>
                                                 </ul>
-                                            </nav>
+                                            </nav> -->
                                         </div>
                                     </div>
                                 </div>

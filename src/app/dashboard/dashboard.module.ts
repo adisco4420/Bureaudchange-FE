@@ -11,6 +11,7 @@ import { FundWalletComponent } from './fund-wallet/fund-wallet.component';
 import { SharedModule } from '../shared/shared.module';
 import { BuySellComponent } from './buy-sell/buy-sell.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    NgxPaginationModule,
     SharedModule
   ]
 })

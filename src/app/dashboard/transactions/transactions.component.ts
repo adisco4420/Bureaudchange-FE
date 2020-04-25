@@ -14,6 +14,7 @@ import CurrencyUtil from '../../utilts/currency.util';
 })
 export class TransactionsComponent implements OnInit, OnDestroy {
   private unscribe = new Subject();
+  p = 1;
   transUtil = TransUtils;
   cunbySymbol = CurrencyUtil.getCunBySymbol;
   transList: TransI[];
@@ -29,7 +30,6 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     this.walletSrv.fetchTrans().pipe(takeUntil(this.unscribe))
       .subscribe(res => {
         this.transList = this.gs.getSuccessData(res);
-        console.log(this.transList);
       });
   }
   ngOnDestroy() {
