@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment';
+import { env } from '../../environments/env';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GeneralService } from '../shared/general.service';
@@ -9,10 +9,9 @@ import { UserI } from './components/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  userApi = `${environment.baseUrl}/user`;
   public currentUserSubject: BehaviorSubject<UserI>;
   public currentUser: Observable<UserI>;
-  mailLink = environment.hostUrl;
+  mailLink = env.hostUrl;
 
 
   constructor(
@@ -23,25 +22,25 @@ export class AuthService {
     }
 
   register(payload) {
-    return this.http.post(`${this.userApi}/register`, {...payload, baseUrl: this.mailLink});
+    return this.http.post(`${env.userApi}/register`, {...payload, baseUrl: this.mailLink});
   }
   login(payload) {
-    return this.http.post(`${this.userApi}/login`, payload);
+    return this.http.post(`${env.userApi}/login`, payload);
   }
   confirmEmail(token) {
-    return this.http.get(`${'http://localhost:8080/user'}/confirm-email`, this.gs.getAuthHeader(token));
+    return this.http.get(`${env.userApi}/confirm-email`, this.gs.getAuthHeader(token));
   }
   userProfile() {
-    return this.http.get(`${this.userApi}/profile`);
+    return this.http.get(`${env.userApi}/profile`);
   }
   userPinSetup(pin) {
-    return this.http.patch(`${this.userApi}/pin-setup`, {pin});
+    return this.http.patch(`${env.userApi}/pin-setup`, {pin});
   }
   public get currentUserValue(): Observable<UserI> {
     return this.currentUserSubject;
   }
   fetchWalletBalance() {
-    return this.http.get(`${this.userApi}/wallet-balance`);
+    return this.http.get(`${env.userApi}/wallet-balance`);
   }
   updateUserData(token) {
     this.currentUserSubject.next(this.gs.getCurrentUser);
