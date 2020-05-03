@@ -7,7 +7,10 @@
                         <form [formGroup]="form" class="mt-0">
                             <div class="row">
                             <div class="col-12 mb-5">
-                                <h6>Exchange Currency</h6>
+                                <div class="mb-2">
+                                    <i class="fa fa-exchange fa-3x"></i>
+                                </div>
+                                <h5>Exchange Currency</h5>
                             </div>
                             <div class="col">
                                 <select (change)="filteredCun()" formControlName="recieve" name="" id="" class="form-control">
@@ -28,7 +31,7 @@
                                 <p class="text-right">You pay</p>
                             </div>
                             <div class="col-12">
-                                <button (click)="next()" [disabled]="form.invalid || loadingRate" class="my-3 btn btn-block btn-blue">
+                                <button (click)="next()" [disabled]="form.invalid || loadingRate" class="my-3 py-2 btn btn-block btn-blue">
                                     <span *ngIf="!loadingRate">Next <i class="fa fa-forward"></i></span>
                                     <app-loader *ngIf="loadingRate" ></app-loader>
                                 </button>
