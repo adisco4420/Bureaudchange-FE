@@ -1,3 +1,4 @@
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BuySellComponent } from './buy-sell/buy-sell.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -13,7 +14,8 @@ const routes: Routes = [
      {path: 'dashboard', component: LandingComponent},
      {path: 'fund-wallet', component: FundWalletComponent},
      {path: 'exchange', component: BuySellComponent},
-     {path: 'transactions', component: TransactionsComponent}
+     {path: 'transactions', component: TransactionsComponent},
+     {path: 'user-profile', component: UserProfileComponent},
    ]}
 ];
 
