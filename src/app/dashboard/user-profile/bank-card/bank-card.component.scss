@@ -1,0 +1,51 @@
+.bank-card-new{
+    text-align: center;
+    padding: 30px 15px;
+    border-radius: 7px;
+    background: rgb(241, 245, 246);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(235, 235, 235);
+    
+}
+.bank-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 23px 25px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 7px;
+    text-align: center;
+    .left{
+        border-right: 1px solid white;
+        padding-right: 10px;
+        .bank-icon{
+            color: white;
+        }
+        .bank-currency{
+            color: #495057;
+
+        }
+    }
+    .detail{
+        padding-left: 10px;
+        text-align: left;
+        .bank-name{
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .bank-number{
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .act-name{
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: white;
+        }
+    }
+}
