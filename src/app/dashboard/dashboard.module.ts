@@ -12,6 +12,8 @@ import { SharedModule } from '../shared/shared.module';
 import { BuySellComponent } from './buy-sell/buy-sell.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { BankCardComponent } from './user-profile/bank-card/bank-card.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     DashSidebarComponent,
     FundWalletComponent,
     BuySellComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    UserProfileComponent,
+    BankCardComponent
   ],
   imports: [
     CommonModule,
