@@ -1,0 +1,137 @@
+    <!-- main content area start -->
+  <!-- page title area end -->
+  <div class="main-content-inner">
+    <div class="row">
+        <!-- nav tab start -->
+        <div class="col-lg-12 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#user-profile" role="tab" aria-controls="user-profile" aria-selected="true">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="bank-card-tab" data-toggle="tab" href="#bank-card" role="tab" aria-controls="bank-card" aria-selected="false">Bank Accounts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Change Password</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-3" id="myTabContent">
+                        <div class="tab-pane fade show active" id="user-profile" role="tabpanel" aria-labelledby="user-profile-tab">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="card">
+                                        <div class="card-body" *ngIf="userInfo; else loadingUserInfo">
+                                            <div class="form-group d-flex justify-content-between">
+                                                <div>
+                                                    <img class="avatar user-thumb" src="/assets/dashboard/images/author/avatar.png" alt="img-pix" width="50px">
+                                                </div>
+                                                <div>
+                                                    <h6>Change Picture</h6>
+                                                    <p class=" text-muted">Max file size is 5Mb.</p>
+                                                </div>
+                                                <div>
+                                                    <button class="btn  btn-outline-secondary">Upload</button>
+                                                </div>
+                                            </div>
+                                            <ng-container [formGroup]="userForm" >
+                                                <div class="personal-detail">
+                                                    <h4 class="header-title">Personal Details</h4>      
+                                                    <div class="form-row align-items-center">
+                                                        <div class="col-sm-6 my-1">
+                                                            <label for="firstname" class="col-form-label">First Name</label>
+                                                            <input formControlName="firstName" class="form-control" type="text" id="firstname">
+                                                            <div *ngIf="getControl('firstName').dirty&&getControl('firstName').invalid">
+                                                                <span class="text-danger">first name is required</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 my-1">
+                                                            <label for="lastname" class="col-form-label">Last Name</label>
+                                                            <input formControlName="lastName" class="form-control" type="text"  id="lastname">
+                                                            <div *ngIf="getControl('lastName').dirty&&getControl('lastName').invalid">
+                                                                <span class="text-danger">last name is required</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 my-1">
+                                                            <label for="email" class="col-form-label">Email</label>
+                                                            <input formControlName="email" class="form-control" type="email" id="email">
+                                                        </div>
+                                                        <div class="col-sm-12 my-1">
+                                                            <label for="phonenumber" class="col-form-label">Phone Number (<small class="text-muted">include country code</small>) </label>
+                                                            <input formControlName="phoneNumber" class="form-control" type="tel"  id="phonenumber">
+                                                            <div *ngIf="getControl('phoneNumber').dirty&&getControl('phoneNumber').invalid">
+                                                                <span class="text-danger">phone number is required</span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                
+                                                </div>
+                                                <div  class="address mt-2" formGroupName="address">
+                                                    <h4 class="header-title">Address Information</h4>
+                                                    <div class="form-row align-items-center">
+                                                        <div class="col-sm-12 my-1">
+                                                            <label for="street" class="col-form-label">Street</label>
+                                                            <input formControlName="street" class="form-control" type="text"  id="street">
+                                                            <div *ngIf="getAddressControl('street').dirty&&getAddressControl('street').invalid">
+                                                                <span class="text-danger">street is required</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 my-1">
+                                                            <label for="city" class="col-form-label">City/town</label>
+                                                            <input formControlName="city" class="form-control" type="text"  id="city">
+                                                            <div *ngIf="getAddressControl('city').dirty&&getAddressControl('city').invalid">
+                                                                <span class="text-danger">city/town is required</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 my-1">
+                                                            <label for="state" class="col-form-label">State</label>
+                                                            <input formControlName="state" class="form-control" type="text"  id="state">
+                                                            <div *ngIf="getAddressControl('state').dirty&&getAddressControl('state').invalid">
+                                                                <span class="text-danger">state is required</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 my-1">
+                                                            <label for="postalcode" class="col-form-label">Postal Code</label>
+                                                            <input formControlName="postalcode" class="form-control" type="text"  id="postalcode">
+                                                            <div *ngIf="getAddressControl('postalcode').dirty&&getAddressControl('postalcode').invalid">
+                                                                <span class="text-danger">postal code is required</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 my-1">
+                                                            <label for="country" class="col-form-label">Country</label>
+                                                            <input formControlName="country" class="form-control" type="text"  id="country">
+                                                            <div *ngIf="getAddressControl('country').dirty&&getAddressControl('country').invalid">
+                                                                <span class="text-danger">country is required</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </ng-container>
+                                            <button (click)="editProfile()" [disabled]="userForm.invalid || loading" class="btn btn-blue">
+                                                <span *ngIf="!loading">Save  <i class="ml-1 fa fa-save"></i> </span>
+                                                <app-loader *ngIf="loading"></app-loader>
+                                            </button>
+                                        </div>
+                                        <ng-template #loadingUserInfo>
+                                            <app-loader [type]="'wave'" ></app-loader>
+                                        </ng-template>
+                                    </div>                      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="bank-card" role="tabpanel" aria-labelledby="bank-card-tab">
+                            <app-bank-card></app-bank-card>      
+                        </div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta soluta doloribus, ullam, ut obcaecati laboriosam eos, officia dolores voluptatum quas impedit placeat cumque animi quos odio quibusdam voluptatibus magnam minima facilis necessitatibus libero! Error velit veritatis veniam ipsa? Reiciendis quas qui neque atque repudiandae quidem incidunt, a consectetur ipsam impedit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- nav tab end -->
+
+    </div>
+</div>
