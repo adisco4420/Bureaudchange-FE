@@ -1,0 +1,13 @@
+li.nav-item {
+    a.nav-link{
+        color: #007bff;
+        &.active{
+            color: #495057;
+        }
+    }
+}
+.form-row {
+    .col-sm-12, .col-sm-6{
+        height: 95px;
+    }
+}

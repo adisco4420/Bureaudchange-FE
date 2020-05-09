@@ -1,0 +1,98 @@
+<div class="card" *ngIf="bankList; else loadingBank">
+    <div class="card-header">
+        <div class="card-title">
+            <h6>Bank Accounts <span class="text-muted">(for withdraws)</span></h6>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div *ngFor="let bank of bankList" class="col-md-4 my-2">
+                <div class="bank-card is-clickable" [style.background-color]="gs.getCurrencyColor(bank.currency).bg || 'black'" >
+                    <div class="left">
+                        <p class="bank-icon"><i class="fa fa-bank fa-3x"></i></p>
+                        <p class="bank-currency"><i class="badge badge-pill badge-light">{{bank.currency}}</i></p>
+                    </div>
+                    <div class="detail">
+                        <h6 class="bank-name text-elips">{{bank.bankName}}</h6>
+                        <h6 class="bank-number">{{bank.accountNo}}</h6>
+                        <h6 class="act-name">{{bank.accountName}}</h6>
+                    </div> 
+                    <div class="account-card-overlay rounded"> 
+                        <a (click)="editBank(bank)" class="text-light btn-link mx-2">
+                            <span class="mr-1"><i class="fa fa-edit"></i></span>edit Details
+                        </a> 
+                        <a (click)="deletebank(bank)" class="text-light btn-link mx-2"><span class="mr-1"><i class="fa fa-trash">
+                        </i></span>Delete</a> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 my-2">
+                <div (click)="addBank()" class="bank-card-new bg-light text-dark is-clickable">
+                    <h6><i class="fa fa-plus-circle text-blue fa-2x"></i></h6>
+                    <h6 class="mt-2">Add New Bank Account</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #loadingBank>
+    <app-loader [type]="'wave'" ></app-loader>
+</ng-template>
+<!-- Bank Modal -->
+<button data-toggle="modal" id="openBankModalBtn" data-target="#bankModal" class="d-none">Open Bank Modal</button>
+<div class="modal fade" id="bankModal" tabindex="-1" role="dialog" aria-labelledby="bankModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"><span class=" text-capitalize">{{actionType}}</span> bank account</h5>
+          <button type="button" id="closeBankModal" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!-- <p class="text-danger">All fields with (*) are required</p> -->
+            <form [formGroup]="bankForm" >
+                <div class="form-group">
+                    <label for="currency">Currency <span class="text-danger">*</span></label>
+                    <select formControlName="currency" class="form-control" id="currency">
+                        <option value="" disabled>Select Currency</option>
+                        <option *ngFor="let cun of currencyList" value="{{cun.symbol}}"  >
+                            {{cun.name +' ('+cun.symbol+')'}}
+                          </option>
+                      </select>
+                      <div *ngIf="getControl('currency').touched&&getControl('currency').invalid">
+                          <span class="text-danger">currency is required</span>
+                      </div>
+                  </div>
+                <div class="form-group">
+                  <label for="banName">Bank Name <span class="text-danger">*</span></label>
+                  <input formControlName="bankName" type="text" class="form-control" id="bankName" aria-describedby="banName" placeholder="e.g. Wells Fargo">
+                  <div *ngIf="getControl('bankName').touched&&getControl('bankName').invalid">
+                    <span class="text-danger">bank name is required</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="actName">Account Name <span class="text-danger">*</span></label>
+                    <input formControlName="accountName" type="text" class="form-control" id="actName" aria-describedby="actName" placeholder="e.g. James Benson">
+                    <div *ngIf="getControl('accountName').touched&&getControl('accountName').invalid">
+                        <span class="text-danger">account name is required</span>
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label for="actNo">Account Number <span class="text-danger">*</span></label>
+                    <input formControlName="accountNo" type="text" class="form-control" id="actNo" aria-describedby="actNo" placeholder="e.g. 8327372928">
+                    <div *ngIf="getControl('accountNo').touched&&getControl('accountNo').invalid">
+                        <span class="text-danger">account number name is required</span>
+                      </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button [disabled]="bankForm.invalid || loading" (click)="addEditBank()" type="button" class="py-2 btn btn-block btn-blue">
+            <span *ngIf="!loading"><span class=" text-uppercase">{{actionType}}</span> Bank Account  </span>
+            <app-loader *ngIf="loading"></app-loader>
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>

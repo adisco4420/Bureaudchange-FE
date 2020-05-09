@@ -34,7 +34,7 @@
                <!-- trading history area start -->
                <div class="col-lg-7 mt-sm-30 mt-xs-30">
                     <ng-container *ngIf="transList; else loadingTrans">
-                        <div class="card" *ngIf="transList.length > 1; else noTrans">
+                        <div class="card" *ngIf="transList.length >= 1; else noTrans">
                             <div class="card-body">
                                 <h4 class="header-title">Transcation History</h4>
                                 <div class="single-table">
@@ -66,24 +66,24 @@
 
                                          
                                         </table>
-                                        <h6><a routerLink="/transaction-history" class="text-info">Load More</a></h6>
+                                        <h6><a routerLink="/transactions" class="text-info">Load More</a></h6>
                                     </div>
                                 </div>
                             </div>
                     </div>
                     <ng-template #noTrans>
-                        <div class="card" *ngIf="transList.length < 1">
+                        <div class="card">
                             <img src="https://cdn.dribbble.com/users/1038710/screenshots/2813751/19.jpg" 
                                  alt="no transaction">
                         </div>
                     </ng-template>
                     </ng-container>
                     <ng-template #loadingTrans>
-                        <div class="card" >
-                            <img src="/assets/spinner/block.gif" 
-                                  alt="loading">
+                        <div class="card text-center py-5">
+                            <i class="fa fa-spinner fa-spin fa-4x"></i>
+                            <h6>Loading Transactions...</h6>
                         </div>
-                    </ng-template>
+                    </ng-template> 
                
                   </div>
                   <!-- trading history area end -->

@@ -27,10 +27,15 @@
     background-color: #007bff !important;
     color: white;
 }
-.btn {
-    font-size: 12px;
-    font-weight: 400;
-    text-transform: uppercase;
-    padding: 0.375rem 1.35rem;
-    transition: all 0.3s ease;
+.text-blue{
+    color: #007bff !important;
 }
+.is-clickable{
+    cursor: pointer;
+}
+.text-elips {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  

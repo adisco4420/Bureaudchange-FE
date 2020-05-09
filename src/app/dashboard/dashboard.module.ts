@@ -1,3 +1,4 @@
+import { UsersBankService } from './services/users-bank.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +12,9 @@ import { FundWalletComponent } from './fund-wallet/fund-wallet.component';
 import { SharedModule } from '../shared/shared.module';
 import { BuySellComponent } from './buy-sell/buy-sell.component';
 import { TransactionsComponent } from './transactions/transactions.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule} from 'ngx-pagination';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { BankCardComponent } from './user-profile/bank-card/bank-card.component';
 
 
 @NgModule({
@@ -23,13 +26,16 @@ import {NgxPaginationModule} from 'ngx-pagination';
     DashSidebarComponent,
     FundWalletComponent,
     BuySellComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    UserProfileComponent,
+    BankCardComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     NgxPaginationModule,
     SharedModule
-  ]
+  ],
+  providers: [ UsersBankService]
 })
 export class DashboardModule { }

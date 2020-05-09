@@ -14,7 +14,7 @@ export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with jwt token if available
         const currentUser = this.authSrv.isUserLoggedIn();
-        if (currentUser) {
+        if (currentUser && !request.url.includes('/user/confirm-email')) {
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${this.gs.getToken}`

@@ -33,6 +33,9 @@ export class AuthService {
   userProfile() {
     return this.http.get(`${env.userApi}/profile`);
   }
+  editProfile(payload) {
+    return this.http.patch(`${env.userApi}/edit-profile`, payload);
+  }
   userPinSetup(pin) {
     return this.http.patch(`${env.userApi}/pin-setup`, {pin});
   }

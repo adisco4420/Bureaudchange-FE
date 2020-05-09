@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { UserI } from '../auth/components/user.model';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,28 @@ export class GeneralService {
   }
   getSuccessData(data) {
     return data && data.data && data.data.data ? data.data.data : [];
+  }
+  sweetAlertAsync(type: "question" | "warning", message: string, observable: Observable<any>) {
+    return Swal.fire({
+      // title: 'Cancelled',
+      html: message || 'Warning',
+      icon: type,
+      confirmButtonText: 'Ok',
+      showLoaderOnConfirm: true,
+      showCancelButton: true,
+      cancelButtonColor: "#d33",
+      preConfirm: () => {
+        return observable
+          .toPromise()
+          .then((res) => {
+            return { ...res, status: res.status ? res.status.toLowerCase() : 'success'};
+          })
+          .catch((err) => {
+            return { status: "error", error: err };
+          });
+      },
+      allowOutsideClick: false,
+    });
   }
   get getToken() {
     return JSON.parse(localStorage.getItem(this.currentUser));
