@@ -7,6 +7,7 @@ export const env = {
     fundWalletApi: `${baseUrl}/fund-wallet`,
     cunRateApi: `${baseUrl}/cun-rate`,
     transApi: `${baseUrl}/trans`,
+    usersBankApi: `${baseUrl}/user-bank`,
     hostUrl: environment.hostUrl
 };
 

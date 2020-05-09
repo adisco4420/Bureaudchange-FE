@@ -36,10 +36,10 @@ export class FundWalletComponent implements OnInit, OnDestroy {
     private gs: GeneralService,
     private authSrv: AuthService,
     private walletSrv: WalletService) {
+      if ((window as any).Stripe) {
+        this.stripe = Stripe(environment.stripeTestKey);
+      }
       this.authSrv.fetchWalletBalance().subscribe((res: UserI) => {
-        if ((window as any).Stripe) {
-          this.stripe = Stripe(environment.stripeTestKey);
-        }
         const data = this.gs.getSuccessData(res);
         this.currencyList = data && data.wallet ? data.wallet : [];
       });

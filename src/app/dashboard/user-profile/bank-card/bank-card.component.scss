@@ -8,13 +8,35 @@
     border-color: rgb(235, 235, 235);
     
 }
+ .account-card-overlay {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    top: 0px;
+    left: 14px;
+    height: 100%;
+    width: 90%;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: -ms-flexbox;
+    display: flex;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.bank-card:hover .account-card-overlay {
+        opacity: 1;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
 .bank-card {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 23px 25px;
-    background-color: #28a745;
     color: white;
+    background-color: darkorchid;;
     border-radius: 7px;
     text-align: center;
     .left{
@@ -28,23 +50,31 @@
 
         }
     }
+    // &:hover .account-card .account-card-overlay {
+    //     opacity: 1;
+    //     -webkit-transition: all 0.3s ease;
+    //     transition: all 0.3s ease;
+    // }
     .detail{
         padding-left: 10px;
         text-align: left;
         .bank-name{
             font-size: 20px;
+            max-width: 130px;
             font-weight: 500;
             margin-bottom: 5px;
         }
         .bank-number{
             font-size: 15px;
             font-weight: 500;
+            max-width: 130px;
             margin-bottom: 5px;
         }
         .act-name{
             font-size: 13px;
             font-weight: 500;
             margin-bottom: 5px;
+            max-width: 130px;
             color: white;
         }
     }
