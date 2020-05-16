@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { GeneralService } from './../../shared/general.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -29,11 +30,21 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   });
   constructor(
     private authSrv: AuthService,
+    private route: ActivatedRoute,
     private gs: GeneralService) {
-
   }
   ngOnInit() {
+    this.activateTab();
     this.getProfile();
+  }
+  activateTab() {
+    this.route.queryParams.subscribe(res => {
+      const viewType = res && res.view ? res.view : 'home';
+      const selectedTab = document.getElementById(`${viewType}-tab`);
+      if (selectedTab) {
+        selectedTab.click();
+      }
+    });
   }
   getControl(feild: string) {
     return this.userForm.controls[feild];

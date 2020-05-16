@@ -20,8 +20,9 @@ export class WalletSetupComponent implements OnInit, OnDestroy {
   loadingPin = false;
   showType: 'wallet'|'pin' =  'wallet';
   flag = {url: 'https://cdn.countryflags.com/thumbs/', size: '/flag-round-250.png'};
+  euFlag = 'https://cdn1.iconfinder.com/data/icons/flags-of-the-world-2/128/european-union-circle-512.png';
   allCurrency: CurrencyI[] = [];
-  filteredCurreny = [];
+  filteredCurreny = []; 
   userWallets: CurrencyI[];
   minimumCurrencyError = false;
   pinError = false;

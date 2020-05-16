@@ -1,26 +1,40 @@
-<div *ngIf="type==='clockwise-fade'" class="la-line-spin-clockwise-fade {{classes}}">
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-</div>
-<div *ngIf="type==='clip-rotate'" class="d-flex justify-content-center">
-	<div  class="la-ball-clip-rotate {{classes}}">
+<ng-container *ngIf="!loadingErr; else showError">
+	<div *ngIf="type==='clockwise-fade'" class="la-line-spin-clockwise-fade {{classes}}">
 		<div></div>
-	</div>
-</div>
-
-
-<div *ngIf="type==='wave'" class=" d-flex justify-content-center  py-10 ">
-	<div  class="la-line-scale-pulse-out la-3x">
+		<div></div>
+		<div></div>
 		<div></div>
 		<div></div>
 		<div></div>
 		<div></div>
 		<div></div>
 	</div>
-</div>
+	<div *ngIf="type==='clip-rotate'" class="d-flex justify-content-center">
+		<div  class="la-ball-clip-rotate {{classes}}">
+			<div></div>
+		</div>
+	</div>
+	<div *ngIf="type==='wave'" class=" d-flex justify-content-center  py-10 ">
+		<div  class="la-line-scale-pulse-out la-3x">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+</ng-container>
+<ng-template #showError>
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<div class="card mt-5">
+				<div class="card-body text-center">
+				<i class="fa fa-exclamation-circle fa-5x text-blue"></i>
+				<p *ngIf="loadingErr.status===0">Please check your internet connection</p>
+				<p *ngIf="loadingErr.status!==0">{{loadingErr.error}}</p>
+				<button (click)="reloadSpinner()" class="btn btn-outline-primary mt-2">reload</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>

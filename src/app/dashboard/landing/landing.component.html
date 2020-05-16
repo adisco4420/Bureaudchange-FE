@@ -40,21 +40,23 @@
                                 <div class="single-table">
                                     <div class="table-responsive">
                                         <table class="table text-center"  *ngFor="let tran of transList">
-                                            <thead class="text-uppercase">
-                                                <tr><b>{{tran.date | date}}</b></tr>
+                                            <thead class="text-uppercase text-left">
+                                                <tr><td class=" border-0" colspan="12"><b>{{tran.date | date:'medium'}}</b></td></tr>
                                                
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td [ngSwitch]="tran.source">
+                                                    <td colspan="3" [ngSwitch]="tran.source">
                                                         <span *ngSwitchCase="'card'" class="fa fa-credit-card fa-2x"></span>
                                                         <span *ngSwitchCase="'wallet'" class="fa fa-exchange fa-2x"></span>
+                                                        <span *ngSwitchCase="'bank-transfer'" class="fa fa-bank fa-2x"></span>
                                                         <span *ngSwitchDefault class="fa fa-money fa-2x"></span>
                                                     </td>
-                                                    <td>{{transUtil.getText(tran)}}
-                                                            <p>{{cunbySymbol(tran.payCun).sign || cunbySymbol(tran.recieveCun).sign}}{{tran.amount | number}}</p>
+                                                    <td >
+                                                            <p class="trans-text">{{transUtil.getText(tran)}}</p>
+                                                            <p><b>{{cunbySymbol(tran.payCun).sign || cunbySymbol(tran.recieveCun).sign}}{{tran.amount | number}}</b></p>
                                                         </td>
-                                                        <td [ngSwitch]="tran.status">
+                                                        <td  [ngSwitch]="tran.status">
                                                             <span *ngSwitchCase="'success'" class="status-p bg-success">success</span>
                                                             <span *ngSwitchCase="'failed'" class="status-p bg-danger">failed</span>
                                                             <span *ngSwitchDefault class="status-p bg-warning">pending</span>
@@ -66,15 +68,16 @@
 
                                          
                                         </table>
-                                        <h6><a routerLink="/transactions" class="text-info">Load More</a></h6>
+                                        <h6 *ngIf="transList.length===5"><a routerLink="/transactions" class="text-info">Load More</a></h6>
                                     </div>
                                 </div>
                             </div>
                     </div>
                     <ng-template #noTrans>
-                        <div class="card">
-                            <img src="https://cdn.dribbble.com/users/1038710/screenshots/2813751/19.jpg" 
-                                 alt="no transaction">
+                        <div class="card text-center empty-trans p-3">
+                            <img src="/assets/images/no-trans.png" width="65%"
+                            alt="no transaction" class="">
+                       <h5 class="my-3">You haven't conducted <br> any transaction</h5>
                         </div>
                     </ng-template>
                     </ng-container>

@@ -45,5 +45,12 @@ export class DashSidebarComponent implements OnInit {
         height: 'calc(100vh - 158px)'
       });
   }
-
+  closeSidebar() {
+    if (screen.width <= 600) {
+      const element = document.getElementById('closeSidebar');
+      if (element) {
+        element.click();
+      }
+    }
+  }
 }

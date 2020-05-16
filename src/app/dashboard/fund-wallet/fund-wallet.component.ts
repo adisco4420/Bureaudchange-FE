@@ -74,13 +74,13 @@ export class FundWalletComponent implements OnInit, OnDestroy {
     });
   }
   getStripeSesId() {
-    const url = environment.hostUrl;
+    const url = window.location.href.split('fund-wallet')[0];
     const selectedCurrency = this.currencyList.find(cun => cun.symbol === this.form.value.currency);
     const payload = {
       amount: this.form.value.amount,
       currency: this.form.value.currency,
-      success_url: `${url}/fund-wallet`,
-      cancel_url: `${url}/fund-wallet?cancel=true`,
+      success_url: `${url}fund-wallet`,
+      cancel_url: `${url}fund-wallet?cancel=true`,
       name: selectedCurrency.name
     };
     this.walletSrv.fetchStripeSesId(payload).pipe(takeUntil(this.unscribe)).subscribe(res => {

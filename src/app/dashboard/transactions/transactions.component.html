@@ -3,36 +3,44 @@
             <div class="row mt-5" *ngIf="transList; else loading" >
                     <!-- trading history area start -->
                     <div class="col-lg-8 offset-lg-2">
-                        <div class="card">
+                        <div class="card" *ngIf="transList.length">
                                 <div class="card-body">
                                     <div class="single-table">
                                         <div class="table-responsive">
                                             <table class="table text-center"  *ngFor="let tran of transList|paginate: { itemsPerPage: 5, currentPage: p }">
-                                                <thead class="text-uppercase">
-                                                    <tr><b>{{tran.date | date:'medium'}}</b></tr>
-                                                </thead>
-                                                <tbody >
-                                                    <tr >
-                                                        <td colspan="3" [ngSwitch]="tran.source">
-                                                            <span *ngSwitchCase="'card'" class="fa fa-credit-card fa-2x"></span>
-                                                            <span *ngSwitchCase="'wallet'" class="fa fa-exchange fa-2x"></span>
-                                                            <span *ngSwitchDefault class="fa fa-money fa-2x"></span>
+                                            <thead class="text-uppercase text-left">
+                                                <tr>
+                                                    <td class=" border-0" colspan="11"><b>{{tran.date | date:'medium'}}</b></td>
+                                                 
+                                                </tr>
+                                               
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="" [ngSwitch]="tran.source">
+                                                        <span *ngSwitchCase="'card'" class="fa fa-credit-card fa-2x"></span>
+                                                        <span *ngSwitchCase="'wallet'" class="fa fa-exchange fa-2x"></span>
+                                                        <span *ngSwitchCase="'bank-transfer'" class="fa fa-bank fa-2x"></span>
+                                                        <span *ngSwitchDefault class="fa fa-money fa-2x"></span>
+                                                    </td>
+                                                    <td colspan="8" >
+                                                            <p class="trans-text-res">{{transUtil.getText(tran)}}</p>
+                                                            <p><b>{{cunbySymbol(tran.payCun).sign || cunbySymbol(tran.recieveCun).sign}}{{tran.amount | number}}</b></p>
                                                         </td>
-                                                        <td colspan="6">{{transUtil.getText(tran)}}
-                                                            <p>{{cunbySymbol(tran.payCun).sign || cunbySymbol(tran.recieveCun).sign}}{{tran.amount | number}}</p>
-                                                        </td>
-                                                        <td colspan="3" [ngSwitch]="tran.status">
+                                                        <td  [ngSwitch]="tran.status">
                                                             <span *ngSwitchCase="'success'" class="status-p bg-success">success</span>
                                                             <span *ngSwitchCase="'failed'" class="status-p bg-danger">failed</span>
                                                             <span *ngSwitchDefault class="status-p bg-warning">pending</span>
                                                             
                                                         </td>
-                                                    </tr>
-                                                </tbody> 
-                            
-                                                    
-                                            </table>
-                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                                </tr>
+                          
+                                            </tbody>
+
+                                         
+                                        </table>
+                                          
+                                            <pagination-controls *ngIf="transList.length>5" (pageChange)="p = $event"></pagination-controls>
                                             <!-- <nav aria-label="...">
                                                 <ul class="pagination">
                                                     <li class="page-item disabled">
@@ -51,12 +59,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                        </div>
+                        <div *ngIf="!transList.length" class="card empty-trans p-3">
+                            <img src="/assets/images/no-trans.png" width="65%"
+                                 alt="no transaction" class="">
+                            <h5 class="my-3">You haven't conducted <br> any transaction</h5>
+                        </div>
                     </div>
             </div>
             <ng-template #loading>
-                <app-loader [type]="'wave'" ></app-loader>
+                <app-loader (reload)="getTrans()" [loadingErr]="loadingErr" [type]="'wave'" ></app-loader>
             </ng-template>
         </div>
                   <!-- trading history area end -->
-  

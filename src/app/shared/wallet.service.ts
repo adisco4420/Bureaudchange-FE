@@ -37,15 +37,28 @@ export class WalletService {
     };
     return this.http.post(`${env.userApi}/exchange`, body);
   }
+  fetchWalletDetails(currency: string) {
+    return this.http.get(`${env.userApi}/wallet-details/${currency}`);
+  }
+  validateTransCunAmount(payload: {currency: string, amount: number, type: string}) {
+    return this.http.post(`${env.userApi}/validate-trans-cun-amount`, payload);
+  }
+  withdraw(payload) {
+    const body = {
+      amount: payload.amount,
+      recieveCun: payload.currency,
+      pin: payload.pin
+    };
+    return this.http.post(`${env.userApi}/withdraw`, body);
+  }
   fetchTrans() {
     return this.http.get(`${env.transApi}/user`);
   }
-
   getAllCurrency(): CurrencyI[] {
     return [
       { name: 'British Pound', symbol: 'GBP', sign: '£', flagName: 'united-kingdom'},
       { name: 'US Dollar', symbol: 'USD', sign: '$', flagName: 'united-states-of-america'},
-      { name: 'European Euro', symbol: 'EUR', sign: '€', flagName: 'england'},
+      { name: 'European Euro', symbol: 'EUR', sign: '€', flagName: 'european-union'},
       { name: 'Nigerian Naira', symbol: 'NGN', sign: '₦', flagName: 'nigeria'},
       { name: 'UAE Dirham', symbol: 'AED', sign: '	د.إ', flagName: 'united-arab-emirates'},
       { name: 'Chinese Yuan', symbol: 'CNY', sign: '¥', flagName: 'china'},

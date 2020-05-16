@@ -14,6 +14,8 @@ import CurrencyUtil from '../../utilts/currency.util';
 })
 export class TransactionsComponent implements OnInit, OnDestroy {
   private unscribe = new Subject();
+  loaderType = 'wave';
+  loadingErr;
   p = 1;
   transUtil = TransUtils;
   cunbySymbol = CurrencyUtil.getCunBySymbol;
@@ -27,9 +29,13 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   }
 
   getTrans() {
+    this.loaderType = 'wave';
     this.walletSrv.fetchTrans().pipe(takeUntil(this.unscribe))
       .subscribe(res => {
         this.transList = this.gs.getSuccessData(res);
+      }, err => {
+        this.loaderType = '';
+        this.loadingErr = err;
       });
   }
   ngOnDestroy() {

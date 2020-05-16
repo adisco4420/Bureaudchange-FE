@@ -13,6 +13,7 @@ import { takeUntil } from 'rxjs/operators';
 export class RegisterComponent implements OnInit, AfterViewInit, OnDestroy {
   unscribe = new Subject();
   error;
+  success = false;
   submitted = false;
   disBtn = false;
   passwordPattern = '[a-zA-Z ]*';
@@ -38,11 +39,12 @@ export class RegisterComponent implements OnInit, AfterViewInit, OnDestroy {
   register() {
     if (this.form.valid) {
       this.disBtn = true;
+      this.error = null;
       this.authSrv.register(this.form.value).pipe(takeUntil(this.unscribe)).subscribe((res: any) => {
-        this.form.reset();
-        this.gs.swtSuccess(res);
+        // this.form.reset();
+        this.success = true;
       }, err => {
-        this.gs.swtError(err);
+        this.error = err;
       }).add(() => {
         this.disBtn = false;
         this.submitted = false;
@@ -56,10 +58,12 @@ export class RegisterComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   pwdChange() {
     const pwdField = document.getElementById('pwd-eye');
-    if (this.controls.password.value.length >= 8) {
-      pwdField.style.bottom = '30%';
-    } else {
-      pwdField.style.bottom = '50%';
+    if (pwdField) {
+      if (this.controls.password.value.length >= 8) {
+        pwdField.style.bottom = '30%';
+      } else {
+        pwdField.style.bottom = '50%';
+      }
     }
   }
 
