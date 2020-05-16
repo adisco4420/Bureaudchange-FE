@@ -5,6 +5,9 @@
 @import "./assets/css/style.css";
 @import "./assets/dashboard/css/styles.css";
 @import '~ngx-toastr/toastr';
+body{
+    font-family: 'Mukta', sans-serif;
+}
 .form-control{
     box-shadow: none !important;
 }
@@ -23,12 +26,19 @@
 .py-10{
     padding: 13% 0px;
 }
+.ft-weight-400 {
+    font-weight: 400 !important;
+}
 .btn-blue{
     background-color: #007bff !important;
     color: white;
 }
 .text-blue{
     color: #007bff !important;
+}
+.trans-text {
+    width: 230px;
+    text-align: center !important;
 }
 .is-clickable{
     cursor: pointer;
@@ -38,4 +48,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
+  .empty-trans{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { LandingComponent } from './landing/landing.component';
-import { DashLayoutComponent } from './dash-layout/dash-layout.component';
+import { DashLayoutComponent } from './core/dash-layout/dash-layout.component';
 import { DashHeaderComponent } from './core/dash-header/dash-header.component';
 import { DashFooterComponent } from './core/dash-footer/dash-footer.component';
 import { DashSidebarComponent } from './core/dash-sidebar/dash-sidebar.component';
@@ -15,6 +15,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BankCardComponent } from './user-profile/bank-card/bank-card.component';
+import { DispenseComponent } from './dispense/dispense.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { BankCardComponent } from './user-profile/bank-card/bank-card.component'
     BuySellComponent,
     TransactionsComponent,
     UserProfileComponent,
-    BankCardComponent
+    BankCardComponent,
+    DispenseComponent
   ],
   imports: [
     CommonModule,

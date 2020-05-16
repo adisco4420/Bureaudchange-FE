@@ -14,9 +14,10 @@
             <div *ngIf="!showLoader">
               <div class="text-center" *ngIf="status.type==='success'">
                 <div>
-                  <i class=" ti-email text-success ft-medium"></i>
+                  <!-- <i class=" ti-email text-success ft-medium"></i> -->
+                  <img width="35%" src="assets/images/open-email.png" alt="verify-email">
                 </div>
-                <h6 class="my-3 text-capitalize">{{status.msg}}</h6>
+                <h5 class="my-3 text-capitalize text-success">{{status.msg}}</h5>
                 <button routerLink="/auth/wallet-setup" class="btn btn-lg btn-primary btn-block text-uppercase" >Setup Wallet</button>
               </div>
               <div class="text-center" *ngIf="status.type==='error'">

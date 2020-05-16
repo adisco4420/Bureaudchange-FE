@@ -4,12 +4,12 @@
         <div class="card card-signin flex-row my-5">
           <div class="card-body">
             <h5 *ngIf="!isAddCurrncy" class="card-title text-center text-capitalize">{{showType}} Setup</h5>
-            <h5 class="card-title text-center text-capitalize">Add Currency</h5>
+            <!-- <h6 class="card-title text-center text-capitalize">Add Currency</h6> -->
 
              <!-- list of Currency -->
              <ng-container *ngIf="showType==='wallet'">
-            <div class=" text-center mb-4">
-                <img class="img-fluid" style="width:120px" src="/assets/images/cash.png" alt="wallet">
+            <div class=" text-center ">
+                <img class="img-fluid" width="25%" src="/assets/images/cash.png" alt="wallet">
             </div>
             <div *ngIf="!userWallets" class=" text-center mb-4">
                 <app-loader [type]="'clip-rotate'" [classes]="'text-purple'" ></app-loader>
@@ -42,7 +42,9 @@
                             <li class="list-group-item" *ngFor="let currency of userWallets">
                               <div class="row">
                                 <div class="col-3 float-left">
-                                    <img *ngIf="currency.name" [src]="flag.url+gs.getContryFlagName(currency.symbol)+flag.size" alt="img" style="width:30px">
+                                    <img *ngIf="currency.name" 
+                                    [src]="currency.flagName==='european-union'? euFlag :(flag.url+gs.getContryFlagName(currency.symbol)+flag.size)" 
+                                    alt="img" style="width:30px">
                                 </div>
                                 <div class="col text-center">
                                     <h6 >{{currency.name}}</h6>
@@ -64,7 +66,7 @@
                    
                     <div class="text-center mb-3">
                        <button *ngIf="!isAddCurrncy" (click)="showPinSetup()" class="btn btn-md btn-primary  text-uppercase" type="submit">
-                         Next <span class=" ti-arrow-right"></span>
+                         Next 
                        </button>
                        <button *ngIf="isAddCurrncy" (click)="gotoDashboard()" class="btn btn-md btn-primary  text-uppercase" type="button">
                         Save <span class=" ti-arrow-right"></span>

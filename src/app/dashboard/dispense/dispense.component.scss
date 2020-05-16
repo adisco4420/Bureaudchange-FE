@@ -1,0 +1,22 @@
+.balance-sec{
+    background: #007bff;
+    border-radius: 5px;
+    padding: 20px;
+    color: white;
+    p{
+        color: white !important;
+    }
+}
+.input-group-prepend{
+    padding: 10px;
+    background: #F1F5F6;
+    border-radius: 5px 0px 0px 5px;
+    border: 1px solid lightgrey;
+    border-right: none;
+} 
+.tr-row{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px dashed gray;
+    margin-bottom: 5px;
+  }

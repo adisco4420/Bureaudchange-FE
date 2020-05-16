@@ -12,7 +12,7 @@ class TransUtils {
         } else if (data.type === 'deposit') {
             result = `Topped up wallet via ${data.source}`;
         } else {
-            result = `Withdraw fund to ${data.source}`;
+            result = `Withdraw fund to bank account`;
         }
         return result;
     }

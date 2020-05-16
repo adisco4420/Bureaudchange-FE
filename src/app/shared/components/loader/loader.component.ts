@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-loader',
@@ -6,12 +6,18 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit {
+  @Output() reload = new EventEmitter();
+  @Input() loadingErr: {status: number, error: string};
   @Input() type: 'clip-rotate' | 'clockwise-fade'|'wave' = 'clockwise-fade';
   @Input() classes: string;
   constructor() { }
 
-  ngOnInit() {
-  } 
+  ngOnInit() {}
+
+  reloadSpinner() {
+    this.loadingErr = null;
+    this.reload.emit();
+  }
 
 }
 
