@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-dark navbar-expand-lg">
-                    <a class="navbar-brand" routerLink="/"><h4 class="text-light"> 
+                    <a class="navbar-brand" (click)="openContent('home')"  routerLink="/" [fragment]="'home'" ><h4 class="text-light"> 
                         <img class="text-light mr-1" width="20px" src="/assets/shekel-sign-solid.svg" alt="icon"> 
                         <b>{{appName}}</b></h4> 
                     </a> 
@@ -12,9 +12,9 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbar">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item"> <a class="nav-link"   routerLink="/" routerLinkActive="active">HOME <span class="sr-only">(current)</span></a> </li>
-                            <li class="nav-item"> <a class="nav-link"  routerLink="#">ABOUT US</a> </li>
-                            <li class="nav-item"> <a class="nav-link" routerLink="#">FAQs</a> </li>
+                            <li class="nav-item"> <a class="nav-link" (click)="openContent('home')"  routerLink="/" [fragment]="'home'" routerLinkActive="active">HOME <span class="sr-only">(current)</span></a> </li>
+                            <li class="nav-item"> <a class="nav-link" (click)="openContent('features')" routerLink="/" [fragment]="'features'">FEATURES</a> </li>
+                            <li class="nav-item"> <a class="nav-link"(click)="openContent('faqs')" routerLink="/"  [fragment]="'faqs'">FAQs</a> </li>
                             <ng-container *ngIf="!gs.getToken; else notlogin">
                                 <li class="nav-item"> <a class="nav-link" routerLink="/auth/login" routerLinkActive="active" >LOG IN</a> </li>
                                 <li class="nav-item"><a  routerLink="/auth/register" routerLinkActive="active" class="btn btn-auth btn-outline-light my-3 my-sm-0 ml-lg-3">SIGN UP</a></li>

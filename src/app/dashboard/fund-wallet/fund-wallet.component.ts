@@ -24,7 +24,7 @@ export class FundWalletComponent implements OnInit, OnDestroy {
   currencyList: UserWalletI[];
   disBtn = false;
   paymentType =  [
-  { name: 'debit card', value: 'card', icon: 'fa fa-credit-card'},
+  { name: 'credit/debit card', value: 'card', icon: 'fa fa-credit-card'},
   { name: 'bank transfer', value: 'bank-transfer', icon: 'fa fa-bank'}
 ];
   stripe;
@@ -54,11 +54,15 @@ export class FundWalletComponent implements OnInit, OnDestroy {
   ngOnInit() {}
   fundWallet() {
     if (this.form.valid) {
-      this.disBtn = true;
-      if (this.form.value.currency === 'NGN') {
-        this.payWithRave();
+      if (this.form.value.fundType === 'card') {
+        this.disBtn = true;
+        if (this.form.value.currency === 'NGN') {
+          this.payWithRave();
+        } else {
+          this.getStripeSesId();
+        }
       } else {
-        this.getStripeSesId();
+        document.getElementById('openBankTransferModal').click();
       }
     } else {
       this.formError = true;
