@@ -26,7 +26,7 @@
                             <div class="media">
                                 <div class="media-body text-center">
                                   <div>
-                                    <img [src]="'/assets/illustrations/'+step.icon" height="200px" width="200px" alt="register">
+                                    <img [src]="cdn+'/illustrations/'+step.icon" height="200px" width="200px" alt="register">
                                   </div> 
                                     <h5 class="card-title">{{step.title}}</h5>
                                     <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque </p> -->
@@ -49,7 +49,7 @@
                 <div class="col-md-6 mb-5" *ngFor="let feature of features">
                     <div class="d-flex">
                         <div class="mr-3">
-                            <img [src]="'assets/icons/'+feature.icon" width="60px" [alt]="feature.icon">
+                            <img [src]="cdn+'/icons/'+feature.icon" width="60px" [alt]="feature.icon">
                         </div>
                         <div>
                             <h5>{{feature.title}}</h5>
@@ -96,7 +96,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <img src="/assets/images/iphonex.png" alt="iphone" class="img-fluid">
+                    <img [src]="cdn+'/images/iphonex_g8w08e.png'" alt="iphone" class="img-fluid">
                 </div>
 
             </div>
