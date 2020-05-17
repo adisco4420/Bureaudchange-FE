@@ -54,3 +54,8 @@ body{
     align-items: center;
     text-align: center;
 }
+.form-group{
+    select.form-control{
+        height: inherit !important;
+    }
+}
