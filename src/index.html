@@ -9,10 +9,22 @@
   <meta name="keywords" content=" Exchange, Send money abroad, recieve foreign currency, trade foreign currencies">
   <link rel="icon" type="image/x-icon" href="/assets/shekel-sign-solid.svg">
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600&display=swap" rel="stylesheet">
-
+  <style>
+    div.loader-container{
+      display: flex;
+      justify-content: center;
+      align-self:center;
+      align-self: center;
+      padding-top: 15%;
+    }
+  </style>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="loader-container">
+      <img src="assets/images/Dual Ring-1s-40px.gif" width="60px" alt="loader">
+    </div>
+  </app-root>
     <script async  src="https://js.stripe.com/v3/"></script>
     <script async src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
 </body>
