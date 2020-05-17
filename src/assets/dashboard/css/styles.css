@@ -832,7 +832,7 @@ ul.breadcrumbs {
 }
 
 .header-title {
-    font-family: 'Lato', sans-serif;
+      /* font-family: 'lato', sans-serif; */
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0;
@@ -1335,7 +1335,7 @@ p.card-text {
 }
 
 .pagination li a {
-    font-family: 'lato', sans-serif;
+    /* font-family: 'lato', sans-serif; */
 }
 
 /*-------------------- END Pagination ------------------- */
@@ -1433,7 +1433,7 @@ label {
     color: #444;
     margin: 9px 0;
     display: inline-block;
-    font-family: 'lato', sans-serif;
+      /* font-family: 'lato', sans-serif; */
 }
 
 .fw-icons a:hover {
@@ -1482,7 +1482,7 @@ label {
     color: #444;
     margin: 9px 0;
     display: inline-block;
-    font-family: 'lato', sans-serif;
+      /* font-family: 'lato', sans-serif; */
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
@@ -1943,7 +1943,7 @@ table.dataTable thead td {
     font-size: 16px;
     color: #444;
     font-weight: 600;
-    font-family: 'lato', sans-serif;
+      /* font-family: 'lato', sans-serif; */
     position: relative;
     padding-bottom: 15px;
 }
@@ -1986,7 +1986,7 @@ table.dataTable thead td {
 }
 
 .offset-settings h4 {
-    font-family: 'lato', sans-serif;
+      /* font-family: 'lato', sans-serif; */
     font-size: 18px;
     letter-spacing: 0;
     font-weight: 700;

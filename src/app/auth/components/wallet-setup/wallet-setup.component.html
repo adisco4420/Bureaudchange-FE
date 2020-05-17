@@ -87,7 +87,7 @@
             <form class="form-signinx" (ngSubmit)='pinSetup(pinVal)'>
                 <b><p class="text-dark mb-2 mt-2 text-center">Create a 5 digit pin for transcation</p></b>
               <div class="form-label-group text-center">
-                <input type="password"  #pinVal="ngModel" name="pin" ngModel id="inputPassword" class="form-control text-center" 
+                <input type="number"  #pinVal="ngModel" name="pin" ngModel id="inputPassword" class="form-control text-center" 
                 placeholder="pin" required   autofocus>
                 <label for="inputPassword">Pin</label>
                 <div class="text-danger ml-2 mt-2" *ngIf="pinVal.valid && pinVal.touched">
