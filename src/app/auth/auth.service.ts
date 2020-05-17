@@ -30,6 +30,9 @@ export class AuthService {
   confirmEmail(token) {
     return this.http.get(`${env.userApi}/confirm-email`, this.gs.getAuthHeader(token));
   }
+  resendConfirmEmail(email) {
+    return this.http.post(`${env.userApi}/resend-email`, {email, baseUrl: this.mailLink});
+  }
   userProfile() {
     return this.http.get(`${env.userApi}/profile`);
   }

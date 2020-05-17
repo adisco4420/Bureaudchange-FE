@@ -14,9 +14,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements  OnDestroy {
   unscribe = new Subject();
-  form = { email: '', password: ''};
   loading = false;
   error;
+  resendEmailMsg;
+  resendLoading = false;
   constructor(
     private authSrv: AuthService,
     private gs: GeneralService,
@@ -26,7 +27,7 @@ export class LoginComponent implements  OnDestroy {
   login(form: NgForm) {
     if (form.valid) {
       this.loading = true;
-      this.error = null;
+      this.resendEmailMsg = this.error = null;
       this.authSrv.login(form.value).pipe(takeUntil(this.unscribe)).subscribe(res => {
         const token = this.gs.getSuccessData(res);
         this.gs.storeToken(token);
@@ -35,9 +36,24 @@ export class LoginComponent implements  OnDestroy {
         this.error = null;
         this.toastr.success('Login Successful');
       }, err => {
-        this.error = err.error;
+        this.error = err;
       }).add(() => {
         this.loading = false;
+      });
+    }
+  }
+  resendEmail(form: NgForm) {
+    const email = form.value.email;
+    if (email) {
+      this.resendLoading = true;
+      this.resendEmailMsg = null;
+      this.authSrv.resendConfirmEmail(email).subscribe(res  => {
+        this.error = null;
+        this.resendEmailMsg = this.gs.getSucessMsg(res);
+      }, err => {
+        this.error = err;
+      }).add(() => {
+        this.resendLoading = false;
       });
     }
   }

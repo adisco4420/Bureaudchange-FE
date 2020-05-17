@@ -6,10 +6,20 @@
         <div class="card-body">
           <h5 class="card-title text-center">Login</h5>
           <form #loginForm="ngForm" class="form-signin" (ngSubmit)="login(loginForm)" >
-            <div *ngIf='error' class="text-danger text-center mb-3">
-                  {{error}}
-              </div> 
-            <div class="form-label-group">
+            <p *ngIf="resendEmailMsg" class="text-success text-center">{{resendEmailMsg}}</p>
+            <ng-container *ngIf='error'>
+              <div  class="text-danger text-center">
+                    <p>{{error.error}}</p>
+                </div> 
+                <div  class="text-center mb-1" *ngIf="error.status===422">
+                  <h6>Resend confirmation mail 
+                    <button type="button" (click)="resendEmail(loginForm)" [disabled]="resendLoading" class=" btn btn-sm btn-primary send-btn">
+                    Send <span *ngIf="resendLoading"><i class="ti-more"></i></span>
+                  </button> 
+                  </h6>
+                </div>
+            </ng-container>
+            <div class="form-label-group mt-2">
               <input type="email" id="inputEmail" class="form-control"  name="email" ngModel
               placeholder="Email address" required>
               <label for="inputEmail">Email address</label>
