@@ -28,6 +28,11 @@ export class MainHeaderComponent implements OnInit {
         $(this).parents('.nav-menu').removeClass('menu-is-open');
     });
   }
+  openContent(content) {
+    $("html, body").animate(
+      { scrollTop: $(`#${content}`).offset().top }, "slow"
+    );
+  }
   logout() {
     this.authSrv.logout();
     this.router.navigate(['/auth/login']);

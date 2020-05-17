@@ -24,7 +24,8 @@
                               <div class="row">
                                 <div class="col-3 float-left">
 
-                                    <img *ngIf="currency.name" [src]="flag.url+currency.flagName+flag.size" alt="img" style="width:30px">
+                                    <img *ngIf="currency.name"   [src]="currency.symbol==='EUR'? euFlag :(flag.url+gs.getContryFlagName(currency.symbol)+flag.size)" 
+                                       alt="img" style="width:30px">
                                 </div>
                                 <div class="col text-center">
                                     <h6 >{{currency.name}}</h6>
@@ -43,7 +44,7 @@
                               <div class="row">
                                 <div class="col-3 float-left">
                                     <img *ngIf="currency.name" 
-                                    [src]="currency.flagName==='european-union'? euFlag :(flag.url+gs.getContryFlagName(currency.symbol)+flag.size)" 
+                                    [src]="currency.symbol==='EUR'? euFlag :(flag.url+gs.getContryFlagName(currency.symbol)+flag.size)" 
                                     alt="img" style="width:30px">
                                 </div>
                                 <div class="col text-center">
@@ -69,7 +70,7 @@
                          Next 
                        </button>
                        <button *ngIf="isAddCurrncy" (click)="gotoDashboard()" class="btn btn-md btn-primary  text-uppercase" type="button">
-                        Save <span class=" ti-arrow-right"></span>
+                        Save 
                       </button>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
 @import "./assets/dashboard/css/styles.css";
 @import '~ngx-toastr/toastr';
 body{
-    font-family: 'Mukta', sans-serif;
+    font-family: 'Mukta', sans-serif !important;
 }
 .form-control{
     box-shadow: none !important;
